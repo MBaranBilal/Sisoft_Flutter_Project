@@ -1,9 +1,15 @@
-# The First Task:
-In my internship process in Sisoft Healthcare Information Systems, this is my first task:) 
-## LogIn + Registration
-After LOGIN page is passed with true username and password, the next page will be supplied in which these are consisted of:
-- Patient Registration
-- Waiting Patient for Doctor
-- Examine Patient (Button): When this button is pressed, the first patient will be examined by the doctor. It is designed taking into account the first patient on the relevant waiting list. (It is also sensitive for those over 65 years of age.)
-- This is also concerned for Beck Anxiety Test, which is used for understanding anxiety level on patient's mental health...
-Best Regards... 
+# Add New Patient
+I have filled "Hasta Ekle" page with the necessary fields.
+User can add a new patient now.
+All fields are validated.
+Placeholder values can be replaced with real values.
+
+For now, adding a new patient is runtime only, no database or server used here.
+## Changes
+Properties of the class Hasta has been changed with necessary fields. Some of them are required as it should be.
+Also HastaEklePage class has changed. 
+There is no change with other classes and algorithms. 
+
+## What Should Done?
+Since the rest of the program is not belong to me and made by other people, I have not changed the main structure at all. I have just implemented my static page.
+main.dart script is too long and messy. It contains lots of fields and classes that can be seperated. 
