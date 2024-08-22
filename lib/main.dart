@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/pages.dart';
 import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart' as xml;
 // ignore: unused_import
@@ -214,16 +215,17 @@ class _HomePageState extends State<HomePage> {
     bekleyenhastalar.add(patient);
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('HomePage'),
-        ),
-        body: Stack(
-          children: [],
-        ),
-        drawer: Drawer(
-            child: ListView(
+      appBar: AppBar(
+        title: Text('HomePage'),
+      ),
+      body: Stack(
+        children: [],
+      ),
+      drawer: Drawer(
+        child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
@@ -242,7 +244,6 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.home),
               title: Text('Home'),
               onTap: () {
-                // Update the state of the app
                 Navigator.pop(context);
               },
             ),
@@ -258,56 +259,214 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 );
-                // Update the state of the app
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_box_outlined),
+              leading: Icon(Icons.access_time),
               title: Text('Bekleyen Hastalar'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  bilgiPageBekleyen bpage = bilgiPageBekleyen();
-                  return bpage.build(context);
-                }));
-                // Update the state of the app
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => bilgiPageBekleyen(),
+                  ),
+                );
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_circle_rounded),
+              leading: Icon(Icons.check_circle),
               title: Text('Muayene Et'),
               onTap: () {
                 _HomePageState.muayeneEtSirayaGore();
-
-                // Update the state of the app
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_box_outlined),
+              leading: Icon(Icons.done),
               title: Text('Bakılan Hastalar'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  bilgiPageBakilan bpage = bilgiPageBakilan();
-                  return bpage.build(context);
-                }));
-                // Update the state of the app
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => bilgiPageBakilan(),
+                  ),
+                );
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_box_outlined),
+              leading: Icon(Icons.analytics),
               title: Text('Beck Anksiyete Testi'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) {
-                    _BeckTestScreenState beck = _BeckTestScreenState();
-                    return beck.build(context);
-                  }),
+                  MaterialPageRoute(
+                    builder: (context) => BeckTestScreen(),
+                  ),
                 );
-                // Update the state of the app
               },
-            )
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Birey'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => IndividualPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.calendar_today),
+              title: Text('Ajanda'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CalendarPage(),
+                  ),
+                );
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.build),
+              title: Text('Yönetim'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ManagementPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.folder),
+              title: Text('Kaynak Yönetimi'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResourceManagementPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.lightbulb),
+              title: Text('Karar Destek'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DecisionSupportPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.sms),
+              title: Text('SMS Bildirim'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SMSNotificationPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Birey İşlemleri'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => IndividualOperationsPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Ayarlar'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.remove_red_eye),
+              title: Text('TETKİK İşlemleri'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => InspectionProcessesPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.cloud_upload),
+              title: Text('Veri Aktarımı'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DataTransferPage(),
+                  ),
+                );
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text('İşlemler'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => IslemlerPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.group),
+              title: Text('USS Karar Destek'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => USSDecisionSupportPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.check_rounded),
+              title: Text('Muayene Bitir'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EndExaminationPage(),
+                  ),
+                );
+              },
+            ),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }
 
