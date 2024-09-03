@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 class IndividualPage extends StatefulWidget {
   @override
   _IndividualPageState createState() => _IndividualPageState();
@@ -279,7 +280,12 @@ class _IndividualPageState extends State<IndividualPage> {
                     ListTile(
                       leading: Icon(Icons.vaccines),
                       title: Text('Aşı (İzlem Dışında)'),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => VaccinationPage()),
+                        );
+                      },
                     ),
                     ListTile(
                       leading: Icon(Icons.description),
@@ -309,6 +315,174 @@ class _IndividualPageState extends State<IndividualPage> {
           ],
         ),
       ),
+    );
+  }
+}
+class VaccinationPage extends StatefulWidget {
+  @override
+  _VaccinationPageState createState() => _VaccinationPageState();
+}
+
+class _VaccinationPageState extends State<VaccinationPage> {
+  final TextEditingController _storyController = TextEditingController();
+  final TextEditingController _complaintController = TextEditingController();
+  final TextEditingController _vaccinationController = TextEditingController();
+
+  List<Map<String, String>> _stories = [];
+  List<Map<String, String>> _complaints = [];
+  List<Map<String, String>> _vaccinations = [];
+
+  String _formatDateTime(DateTime dateTime) {
+    return "${dateTime.day.toString().padLeft(2, '0')}.${dateTime.month.toString().padLeft(2, '0')}.${dateTime.year} – ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
+  }
+
+  void _addStory() {
+    if (_storyController.text.isNotEmpty) {
+      setState(() {
+        _stories.add({
+          'content': _storyController.text,
+          'timestamp': _formatDateTime(DateTime.now()),
+        });
+        _storyController.clear();
+      });
+    }
+  }
+
+  void _addComplaint() {
+    if (_complaintController.text.isNotEmpty) {
+      setState(() {
+        _complaints.add({
+          'content': _complaintController.text,
+          'timestamp': _formatDateTime(DateTime.now()),
+        });
+        _complaintController.clear();
+      });
+    }
+  }
+
+  void _addVaccination(String vaccination) {
+    if (vaccination.isNotEmpty) {
+      setState(() {
+        _vaccinations.add({
+          'content': vaccination,
+          'timestamp': _formatDateTime(DateTime.now()),
+        });
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Aşı (İzlem Dışında)'),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Hikayeler Bölümü
+            _buildSection('Hikayeler', _stories, _storyController, _addStory),
+            SizedBox(height: 20),
+            // Şikayetler Bölümü
+            _buildSection('Şikayetler', _complaints, _complaintController, _addComplaint),
+            SizedBox(height: 20),
+            // Aşılar Bölümü
+            Text(
+              'Aşılar',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Card(
+              elevation: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: _vaccinations
+                      .map(
+                        (vaccination) => ListTile(
+                      title: Text(vaccination['content']!),
+                      trailing: Text(vaccination['timestamp']!),
+                    ),
+                  )
+                      .toList(),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              width: double.infinity, // Container genişliğini ekranın tamamına yayar
+              child: DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                isExpanded: true, // Dropdown genişliğini ekranın tamamına yayar
+                items: [
+                  DropdownMenuItem(child: Text('Bivalan OPA (Oral Polio Aşısı)'), value: 'Bivalan OPA (Oral Polio Aşısı)'),
+                  DropdownMenuItem(child: Text('Trivalan OPA (Oral Polio Aşısı)'), value: 'Trivalan OPA (Oral Polio Aşısı)'),
+                  DropdownMenuItem(child: Text('KKK (Kızamık, Kızamıkçık, Kabakulak Aşısı)'), value: 'KKK (Kızamık, Kızamıkçık, Kabakulak Aşısı)'),
+                  DropdownMenuItem(child: Text('Hepatit B Aşısı'), value: 'Hepatit B Aşısı'),
+                  DropdownMenuItem(child: Text('BCG (Verem Aşısı)'), value: 'BCG (Verem Aşısı)'),
+                  DropdownMenuItem(child: Text('Suçiçeği Aşısı'), value: 'Suçiçeği Aşısı'),
+                  DropdownMenuItem(child: Text('Pnömokok Aşısı'), value: 'Pnömokok Aşısı'),
+                  DropdownMenuItem(child: Text('Rotavirüs Aşısı'), value: 'Rotavirüs Aşısı'),
+                  DropdownMenuItem(child: Text('Difteri, Tetanoz, Boğmaca Aşısı'), value: 'Difteri, Tetanoz, Boğmaca Aşısı'),
+                  // Diğer aşıları buraya ekleyebilirsiniz...
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    _addVaccination(value);
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSection(String title, List<Map<String, String>> items, TextEditingController controller, VoidCallback onAdd) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 10),
+        Card(
+          elevation: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: items
+                  .map(
+                    (item) => ListTile(
+                  title: Text(item['content']!),
+                  trailing: Text(item['timestamp']!),
+                ),
+              )
+                  .toList(),
+            ),
+          ),
+        ),
+        SizedBox(height: 10),
+        TextField(
+          controller: controller,
+          maxLines: 1,
+          decoration: InputDecoration(
+            hintText: 'Yeni $title ekleyin',
+            border: OutlineInputBorder(),
+          ),
+        ),
+        SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: onAdd,
+          child: Text('$title Ekle'),
+        ),
+      ],
     );
   }
 }
