@@ -288,6 +288,16 @@ class _IndividualPageState extends State<IndividualPage> {
                       },
                     ),
                     ListTile(
+                      leading: Icon(Icons.copyright),
+                      title: Text('Kanser'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CancerTrackingPage()),
+                        );
+                      },
+                    ),
+                    ListTile(
                       leading: Icon(Icons.description),
                       title: Text('Reçete'),
                       trailing: Text('Son Reçete 11.05.2015', style: TextStyle(color: Colors.green)),
@@ -318,6 +328,369 @@ class _IndividualPageState extends State<IndividualPage> {
     );
   }
 }
+
+
+
+class CancerTrackingPage extends StatefulWidget {
+  @override
+  _CancerTrackingPageState createState() => _CancerTrackingPageState();
+}
+
+class _CancerTrackingPageState extends State<CancerTrackingPage> {
+  String _selectedScreeningType = 'Kolorektal';
+  List<String> _familyHistory = [];
+  bool _isAddingFamilyHistory = false;
+  TextEditingController _familyHistoryController = TextEditingController();
+
+  DateTime? _screeningDate;
+  DateTime? _resultDate;
+
+  final List<String> _screeningTypes = ['Kolorektal', 'Meme', 'Serviks'];
+  final List<String> _biopsyResults = ['Normal', 'Kanser', 'Polip', 'Kolit', 'Yetersiz Materyal', 'Diğer Patolojiler'];
+  final List<String> _memeResults = ['Kendi Kendine Meme Muayenesi', 'Klinik Meme Muayenesi', 'Mamografi'];
+  final List<String> _hpvTypes = ['HPV Tip 16', 'HPV Tip 18', 'Diğer', '31'];
+  final List<String> _cervicalCytologyResults = ['Normal', 'Enfeksiyon', 'ASC-US'];
+  final List<String> _cervicalBiopsyResults = ['Normal', 'Kori-Nik', 'CIN 1', 'CIN 2'];
+
+  String? _selectedMemeKendiKendineOption;
+  String? _selectedMemeKlinikOption;
+  String? _selectedMemeMamografiOption;
+  String? _selectedHpvTaramaTestiOption;
+  String? _selectedPapSmearTestiOption;
+  String? _selectedCytologyResult;
+  String? _selectedBiopsyResultServiks;
+  String? _selectedHpvType;
+  String? _selectedBiopsyResultKolorektal;
+  String? _selectedGaitadaTesti;
+
+  // Tarih seçici için fonksiyon
+  Future<void> _selectDate(BuildContext context, bool isScreeningDate) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null && pickedDate != DateTime.now()) {
+      setState(() {
+        if (isScreeningDate) {
+          _screeningDate = pickedDate;
+        } else {
+          _resultDate = pickedDate;
+        }
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Kanser Tarama'),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Tarama Tipleri Radio Button
+              Text('Tarama Tipleri', style: TextStyle(fontWeight: FontWeight.bold)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: _screeningTypes.map((type) {
+                  return Expanded(
+                    child: Column(
+                      children: [
+                        Radio<String>(
+                          value: type,
+                          groupValue: _selectedScreeningType,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedScreeningType = value!;
+                            });
+                          },
+                        ),
+                        Text(type),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+              Divider(),
+
+              // Tarama Tarihi ve Sonuçlanma Tarihi
+              Text('Tarama Tarihi ve Sonuçlanma Tarihi', style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(height: 8.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () => _selectDate(context, true),
+                      child: InputDecorator(
+                        decoration: InputDecoration(
+                          labelText: 'Tarama Tarihi',
+                        ),
+                        child: Text(_screeningDate == null
+                            ? 'Tarih Seçin'
+                            : DateFormat('dd-MM-yyyy').format(_screeningDate!)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () => _selectDate(context, false),
+                      child: InputDecorator(
+                        decoration: InputDecoration(
+                          labelText: 'Sonuçlanma Tarihi',
+                        ),
+                        child: Text(_resultDate == null
+                            ? 'Tarih Seçin'
+                            : DateFormat('dd-MM-yyyy').format(_resultDate!)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16.0),
+
+              // İşlem No ve İşlem Tarihi (Statik)
+              Text('İşlem Bilgileri', style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(height: 8.0),
+              Text('İşlem No: 123456', style: TextStyle(color: Colors.grey)),
+              Text('İşlem Tarihi: 01-01-2023', style: TextStyle(color: Colors.grey)),
+              SizedBox(height: 16.0),
+
+              // Aile Öyküsü
+              Text('Aile Öyküsü', style: TextStyle(fontWeight: FontWeight.bold)),
+              if (_familyHistory.isNotEmpty)
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _familyHistory.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(_familyHistory[index]),
+                    );
+                  },
+                ),
+              SizedBox(height: 8.0),
+              if (_isAddingFamilyHistory)
+                TextField(
+                  controller: _familyHistoryController,
+                  decoration: InputDecoration(labelText: 'Aile Öyküsü Girin'),
+                ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (_isAddingFamilyHistory) {
+                      if (_familyHistoryController.text.isNotEmpty) {
+                        _familyHistory.add(_familyHistoryController.text);
+                        _familyHistoryController.clear();
+                      }
+                    }
+                    _isAddingFamilyHistory = !_isAddingFamilyHistory;
+                  });
+                },
+                child: Text(_isAddingFamilyHistory ? 'Kaydet' : 'Aile Öyküsü Ekle'),
+              ),
+              Divider(),
+              SizedBox(height: 16.0),
+
+              // Tarama Tipine Göre Dinamik İçerik
+              if (_selectedScreeningType == 'Kolorektal') ...[
+                Text('Kolorektal Biyopsi Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedBiopsyResultKolorektal,
+                  items: _biopsyResults.map((result) {
+                    return DropdownMenuItem<String>(
+                      value: result,
+                      child: Text(result),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedBiopsyResultKolorektal = value;
+                    });
+                  },
+                  hint: Text('Sonuç Seçin'),
+                ),
+                Text('Gaitada Gizli Kan Testi', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedGaitadaTesti,
+                  items: ['Pozitif', 'Negatif'].map((result) {
+                    return DropdownMenuItem<String>(
+                      value: result,
+                      child: Text(result),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedGaitadaTesti = value;
+                    });
+                  },
+                  hint: Text('Test Seçin'),
+                ),
+              ] else if (_selectedScreeningType == 'Meme') ...[
+                Text('Meme Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text('Kendi Kendine Meme Muayenesi', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedMemeKendiKendineOption,
+                  items: _memeResults.map((result) {
+                    return DropdownMenuItem<String>(
+                      value: result,
+                      child: Text(result),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedMemeKendiKendineOption = value;
+                    });
+                  },
+                  hint: Text('Seçenek Seçin'),
+                ),
+                Text('Klinik Meme Muayenesi', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedMemeKlinikOption,
+                  items: _memeResults.map((result) {
+                    return DropdownMenuItem<String>(
+                      value: result,
+                      child: Text(result),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedMemeKlinikOption = value;
+                    });
+                  },
+                  hint: Text('Seçenek Seçin'),
+                ),
+                Text('Mamografi', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedMemeMamografiOption,
+                  items: _memeResults.map((result) {
+                    return DropdownMenuItem<String>(
+                      value: result,
+                      child: Text(result),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedMemeMamografiOption = value;
+                    });
+                  },
+                  hint: Text('Seçenek Seçin'),
+                ),
+              ] else if (_selectedScreeningType == 'Serviks') ...[
+                Text('HPV Tarama Testi', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedHpvTaramaTestiOption,
+                  items: ['Seçenek 1', 'Seçenek 2'].map((option) {
+                    return DropdownMenuItem<String>(
+                      value: option,
+                      child: Text(option),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedHpvTaramaTestiOption = value;
+                    });
+                  },
+                  hint: Text('Test Seçin'),
+                ),
+                Text('Pap Smear Testi', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedPapSmearTestiOption,
+                  items: ['Seçenek 1', 'Seçenek 2'].map((option) {
+                    return DropdownMenuItem<String>(
+                      value: option,
+                      child: Text(option),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedPapSmearTestiOption = value;
+                    });
+                  },
+                  hint: Text('Test Seçin'),
+                ),
+                Text('Servikal Sitoloji Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedCytologyResult,
+                  items: _cervicalCytologyResults.map((result) {
+                    return DropdownMenuItem<String>(
+                      value: result,
+                      child: Text(result),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedCytologyResult = value;
+                    });
+                  },
+                  hint: Text('Sonuç Seçin'),
+                ),
+                Text('Servikal Biyopsi Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedBiopsyResultServiks,
+                  items: _cervicalBiopsyResults.map((result) {
+                    return DropdownMenuItem<String>(
+                      value: result,
+                      child: Text(result),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedBiopsyResultServiks = value;
+                    });
+                  },
+                  hint: Text('Sonuç Seçin'),
+                ),
+                Text('HPV Tipleri', style: TextStyle(fontWeight: FontWeight.bold)),
+                DropdownButton<String>(
+                  value: _selectedHpvType,
+                  items: _hpvTypes.map((type) {
+                    return DropdownMenuItem<String>(
+                      value: type,
+                      child: Text(type),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedHpvType = value;
+                    });
+                  },
+                  hint: Text('HPV Tipi Seçin'),
+                ),
+              ],
+              SizedBox(height: 16.0),
+
+              // Kaydet ve Randevu Butonları
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Kaydetme işlemi
+                    },
+                    child: Text('Kaydet'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Kanser randevusu alma işlemi
+                    },
+                    child: Text('Kanser Randevusu'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class VaccinationPage extends StatefulWidget {
   @override
   _VaccinationPageState createState() => _VaccinationPageState();
