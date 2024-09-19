@@ -16,6 +16,54 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        // Temel renk şeması
+        primaryColor: Colors.indigo, // Ana tema rengi
+        hintColor: Colors.amber, // Vurgulama rengi (butonlar gibi)
+        // AppBar teması
+        appBarTheme: AppBarTheme(
+          color: Colors.indigo, // AppBar rengi
+          titleTextStyle: TextStyle(
+            fontFamily: 'Rubik',   // Font ailesi
+            fontSize: 20,          // Font boyutu
+            fontWeight: FontWeight.bold, // Kalınlık
+            color: Colors.white,    // Font rengi
+          ),
+        ),
+
+        // Button teması
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.amber),
+            // Buton arka plan rengi
+            foregroundColor: MaterialStateProperty.all(Colors.indigo),
+            // Buton metin rengi
+            textStyle: MaterialStateProperty.all(TextStyle(
+              fontFamily: 'Rubik',  // Font ailesi
+              fontSize: 16,         // Font boyutu
+            )),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12), // Buton kenar yuvarlaklığı
+            )),
+          ),
+        )
+        ,
+
+        // Text teması (genel olarak tüm text widget'ları için geçerli)
+        textTheme: TextTheme(
+          headlineMedium: TextStyle(
+            fontFamily: 'Rubik', // Genel font ailesi
+            fontSize: 32,        // Büyük başlık boyutu
+            fontWeight: FontWeight.bold,
+            color: Colors.indigo,  // Başlıkların rengi
+          ),
+          bodyMedium: TextStyle(
+            fontFamily: 'Rubik',
+            fontSize: 16,         // Normal metin boyutu
+            color: Colors.black,  // Genel metin rengi
+          ),
+        ),
+      ),
       home: HomePage2(),
     );
   }
@@ -219,7 +267,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomePage'),
+        title: Text('Ana Sayfa'),
       ),
       body: Stack(
         children: [],
@@ -230,7 +278,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.indigo,
               ),
               child: Text(
                 'İşlemler',
@@ -1341,7 +1389,7 @@ class _HomePageState2 extends State<HomePage2> {
               'Aile Hekimliği Bilgi Sistemi',
               style: TextStyle(
                 fontSize: 25,
-                color: Colors.teal,
+                color: Colors.indigo,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -1361,38 +1409,26 @@ class _HomePageState2 extends State<HomePage2> {
                 ],
               ),
             ),
-            Form(
-              child: Column(
-                children: [
-                  SizedBox(height: 15),
-                  TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'E-posta',
-                      hintText: 'E-postanızı girin',
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ],
+            SizedBox(height: 15),
+            TextFormField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: 'E-posta',
+                hintText: 'E-postanızı girin',
+                prefixIcon: Icon(Icons.email),
+                border: OutlineInputBorder(),
               ),
             ),
-            Form(
-              child: Column(
-                children: [
-                  SizedBox(height: 15),
-                  TextFormField(
-                    controller: _passwordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
-                      labelText: 'Parola',
-                      hintText: 'Parolanızı girin',
-                      prefixIcon: Icon(Icons.password),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ],
+            SizedBox(height: 15),
+            TextFormField(
+              controller: _passwordController,
+              keyboardType: TextInputType.visiblePassword,
+              decoration: InputDecoration(
+                labelText: 'Parola',
+                hintText: 'Parolanızı girin',
+                prefixIcon: Icon(Icons.password),
+                border: OutlineInputBorder(),
               ),
             ),
             Row(
@@ -1506,8 +1542,7 @@ class _HomePageState2 extends State<HomePage2> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            Savedoctor(), // Use the imported Savedoctor class
+                        builder: (context) => Savedoctor(),
                       ),
                     );
                   },

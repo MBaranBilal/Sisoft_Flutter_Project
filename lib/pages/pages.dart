@@ -27,6 +27,7 @@ class _IndividualPageState extends State<IndividualPage> {
           title: Text('Birey'),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
+            color: Colors.white,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -36,7 +37,20 @@ class _IndividualPageState extends State<IndividualPage> {
               Tab(icon: Icon(Icons.person), text: 'BİREY'),
               Tab(icon: Icon(Icons.settings), text: 'İŞLEMLER'),
             ],
+            labelColor: Colors.white,             // Seçili tab ikon ve metin rengi
+            unselectedLabelColor: Colors.grey,     // Seçili olmayan tab ikon ve metin rengi
+            indicatorColor: Colors.white,   // Seçili tab altındaki çizgi rengi
+            labelStyle: TextStyle(                 // Seçili tab yazı stili
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Rubik',
+            ),
+            unselectedLabelStyle: TextStyle(       // Seçili olmayan tab yazı stili
+              fontSize: 14,
+              fontFamily: 'Rubik',
+            ),
           ),
+
         ),
         endDrawer: Drawer(
           child: ListView(
@@ -151,7 +165,7 @@ class _IndividualPageState extends State<IndividualPage> {
                             child: Container(
                               padding: EdgeInsets.all(16.0),
                               decoration: BoxDecoration(
-                                color: Colors.blueAccent,
+                                color: Colors.indigo,
                                 borderRadius: BorderRadius.circular(12.0),
                                 boxShadow: [
                                   BoxShadow(
@@ -270,7 +284,10 @@ class _IndividualPageState extends State<IndividualPage> {
                     ListTile(
                       leading: Icon(Icons.science),
                       title: Text('Tetkik'),
-                      onTap: () {},
+                      onTap: () {Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TetkikPage()),
+                      );},
                     ),
                     ListTile(
                       leading: Icon(Icons.healing),
@@ -306,7 +323,12 @@ class _IndividualPageState extends State<IndividualPage> {
                     ListTile(
                       leading: Icon(Icons.report),
                       title: Text('Rapor'),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ReportPage()),
+                        );
+                      },
                     ),
                     ListTile(
                       leading: Icon(Icons.group),
@@ -329,6 +351,423 @@ class _IndividualPageState extends State<IndividualPage> {
   }
 }
 
+
+class Tetkik {
+  final String baslik;
+  final List<String> tetkikler;
+
+  Tetkik({required this.baslik, required this.tetkikler});
+}
+
+class TetkikPage extends StatefulWidget {
+  @override
+  _TetkikPageState createState() =>
+      _TetkikPageState();
+}
+
+class _TetkikPageState  extends State<TetkikPage> {
+  List<Tetkik> tetkikler = [
+    Tetkik(
+      baslik: 'Biyokimya',
+      tetkikler: [
+        'Magnezyum',
+        'Fosfor (P)',
+        'Sodyum (Na)',
+        'Romatoid faktör (RF)',
+        'C reaktif protein (CRP)',
+        'Total Protein',
+        'Demir(serum)',
+        'Demir bağlama kapasitesi (TDBK)',
+        'LDL kolesterol',
+        'Kolesterol',
+        'HDL kolesterol',
+        'Trigliserid',
+        'Alanin aminotransferaz (ALT)',
+        'Aspartat transaminaz (AST)',
+        'Bilirubin (direkt)',
+        'Bilirubin (total',
+        'Gamma glutamil transferaz (GGT)',
+        'Laktat dehidrogenaz (LDH)',
+        'Glukoz (Açlık Kan Şekeri',
+        'Üre (Serum/Plazma)',
+        'Kreatinin',
+        'Ürik asit',
+        'Albümin',
+        'Alkalen fosfataz (ALP)',
+        'Kalsiyum (Ca)',
+        'Klor (Cl)',
+        'Potasyum (K)',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Elisa',
+      tetkikler: [
+        'HBsAg',
+        'Anti HBs',
+        'Anti HIV',
+        'Anti HCV',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Kart Testler',
+      tetkikler: [
+        'VDRL-RPR',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Hormon',
+      tetkikler: [
+        'Beta-hCG',
+        'PSA total (Prostat spesifik antijen)',
+        'Folat',
+        'TSH',
+        'Ferritin',
+        'Vitamin B12',
+        'Serbest T4',
+        'İnsülin',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Hba1c',
+      tetkikler: [
+        'Glike hemoglobin (Hb A1c)',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Tokluk Kan Şekeri',
+      tetkikler: [
+        'Glukoz(Postprandial 1 saat)',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Sedimantasyon',
+      tetkikler: [
+        'Sedimentasyon',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Hemogram',
+      tetkikler: [
+        'Tam Kan Sayımı (Hemogram)',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Idrar',
+      tetkikler: [
+        'İdrar tetkiki ve mikroskopisi',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Kardiyok',
+      tetkikler: [
+        'Troponin I',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Kan Grubu',
+      tetkikler: [
+        'ABO+Rh tayini (Forward+Reverse)',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Talasemi',
+      tetkikler: [
+        'Hemoglobin varyant analizi (HPLC)(T...',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Glukoz (1 saat)',
+      tetkikler: [
+        'Glukoz-100g OGTT 60. dakika',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Glukoz(2 saat)',
+      tetkikler: [
+        'Glukoz-100g OGTT 120. dakika',
+      ],
+    ),
+    Tetkik(
+      baslik: 'Glukoz(3.saat)',
+      tetkikler: [
+        'Glukoz-100g 180. dakika',
+      ],
+    ),
+  ];
+  final Map<String, bool> selectedTetkikler = {};
+
+  @override
+  void initState() {
+    super.initState();
+    // Başlangıçta tüm tetkikleri seçilmemiş olarak işaretle
+    tetkikler.forEach((tetkik) {
+      tetkik.tetkikler.forEach((tetkikAdi) {
+        selectedTetkikler[tetkikAdi] = false;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tetkik Listesi'),
+      ),
+      body: ListView.builder(
+        itemCount: tetkikler.length,
+        itemBuilder: (context, index) {
+          final kategori = tetkikler[index];
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            elevation: 5,
+            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            child: ExpansionTile(
+              title: Text(kategori.baslik),
+              children: kategori.tetkikler.map((tetkik) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 3,
+                    child: CheckboxListTile(
+                      title: Text(tetkik),
+                      value: selectedTetkikler[tetkik],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedTetkikler[tetkik] = value!;
+                        });
+                      },
+                      controlAffinity: ListTileControlAffinity.leading,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ReportPage extends StatefulWidget {
+  @override
+  _ReportPageState createState() => _ReportPageState();
+}
+
+class _ReportPageState extends State<ReportPage> {
+  final List<String> reportTypes = [
+    'Akli Meleke Raporu',
+    'Askere Alınma Muayene Raporu',
+    'Balıkçı Gemilerinde Çalışanlar İçin Sağlık Raporu',
+    'Bilgilendirme Raporu',
+    'Çalışabilir Rapor Kağıdı(EK-2)',
+    'Çalışabilir Rapor Kağıdı(Kamu Personeli)',
+    'Durum Bildirir Tek Hekim Sağlık Raporu',
+    'İstirahat Raporu(Öğrenci-Çalışan-Memur)',
+  ];
+
+  String selectedReport = '';
+  List<String> filteredReports = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredReports = reportTypes;
+  }
+
+  void _filterReports(String query) {
+    setState(() {
+      filteredReports = reportTypes
+          .where((report) =>
+          report.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Rapor Seçimi'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Rapor Türü Ara',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                prefixIcon: Icon(Icons.search),
+              ),
+              onChanged: (value) {
+                _filterReports(value);
+              },
+            ),
+            SizedBox(height: 16),
+            Expanded(
+              child: ListView.builder(
+                itemCount: filteredReports.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 3,
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: ListTile(
+                      title: Text(filteredReports[index]),
+                      onTap: () {
+                        setState(() {
+                          selectedReport = filteredReports[index];
+                        });
+                        if (selectedReport ==
+                            'İstirahat Raporu(Öğrenci-Çalışan-Memur)') {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RestReportPage(),
+                            ),
+                          );
+                        } else if (selectedReport ==
+                            'Durum Bildirir Tek Hekim Sağlık Raporu') {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SingleDoctorReportPage(),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RestReportPage extends StatefulWidget {
+  @override
+  _RestReportPageState createState() => _RestReportPageState();
+}
+
+class _RestReportPageState extends State<RestReportPage> {
+  final TextEditingController _dateController = TextEditingController();
+  DateTime? _selectedDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        _dateController.text = '${_selectedDate!.toLocal()}'
+            .split(' ')[0]; // Format to show only date
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('İstirahat Raporu'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _dateController,
+              decoration: InputDecoration(
+                labelText: 'Tarih',
+                hintText: 'Tarih Seçiniz',
+              ),
+              readOnly: true,
+              onTap: () => _selectDate(context),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Süresi'),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Sonuç'),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Kurum Adı'),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Açıklama'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Save or print functionality
+              },
+              child: Text('Yazdır'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SingleDoctorReportPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Durum Bildirir Tek Hekim Sağlık Raporu'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(labelText: 'Verilme Nedeni'),
+              items: [
+                DropdownMenuItem(
+                    value: 'İş Sağlığı ve Güvenliği',
+                    child: Text('İş Sağlığı ve Güvenliği')),
+                DropdownMenuItem(
+                    value: 'Yivsiz Av Tüfeği', child: Text('Yivsiz Av Tüfeği')),
+                DropdownMenuItem(
+                    value: 'Akli Meleke', child: Text('Akli Meleke')),
+                DropdownMenuItem(
+                    value: 'Genel Durum Değerlendirmesi Kararı',
+                    child: Text('Genel Durum Değerlendirmesi Kararı')),
+              ],
+              onChanged: (value) {},
+            ),
+            // Diğer alanlar
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 
 class CancerTrackingPage extends StatefulWidget {
