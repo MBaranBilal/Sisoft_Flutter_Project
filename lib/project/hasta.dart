@@ -16,11 +16,11 @@ class Hasta extends Person {
     this.name = name;
     this.surname = surname;
     this.hastaID = hastaID;
-    this.hastaMuayenedeMi = false;
+    hastaMuayenedeMi = false;
     this.yasi = yasi;
   }
   void getInfo() {
-    print("Name: ${this.name}, Surname: ${this.surname}");
+    print("Name: $name, Surname: $surname");
   }
 }
 
@@ -113,15 +113,15 @@ class Becktestcontent {
     "Yüzün kızarması",
     "Terleme (sıcaklığa bağlı olmayan)"
   ];
-  var tableData = new Map<String, int>();
+  var tableData = <String, int>{};
   Becktestcontent() {
-    for (int i = 0; i < this.olcutler.length; i++) {
+    for (int i = 0; i < olcutler.length; i++) {
       olcutekle(olcutler[i]);
     }
   }
   void olcutekle(String s) {
     //Değeri otomatik 0 alınır...
-    this.tableData[s] = 0;
+    tableData[s] = 0;
   }
 }
 

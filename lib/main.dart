@@ -13,6 +13,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,50 +23,50 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.indigo, // Ana tema rengi
         hintColor: Colors.amber, // Vurgulama rengi (butonlar gibi)
         // AppBar teması
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Colors.indigo, // AppBar rengi
           titleTextStyle: TextStyle(
-            fontFamily: 'Rubik',   // Font ailesi
-            fontSize: 20,          // Font boyutu
+            fontFamily: 'Rubik', // Font ailesi
+            fontSize: 20, // Font boyutu
             fontWeight: FontWeight.bold, // Kalınlık
-            color: Colors.white,    // Font rengi
+            color: Colors.white, // Font rengi
           ),
         ),
 
         // Button teması
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.amber),
+            backgroundColor: WidgetStateProperty.all(Colors.amber),
             // Buton arka plan rengi
-            foregroundColor: MaterialStateProperty.all(Colors.indigo),
+            foregroundColor: WidgetStateProperty.all(Colors.indigo),
             // Buton metin rengi
-            textStyle: MaterialStateProperty.all(TextStyle(
-              fontFamily: 'Rubik',  // Font ailesi
-              fontSize: 16,         // Font boyutu
+            textStyle: WidgetStateProperty.all(const TextStyle(
+              fontFamily: 'Rubik', // Font ailesi
+              fontSize: 16, // Font boyutu
             )),
-            shape: MaterialStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12), // Buton kenar yuvarlaklığı
+            shape: WidgetStateProperty.all(RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(12), // Buton kenar yuvarlaklığı
             )),
           ),
-        )
-        ,
+        ),
 
         // Text teması (genel olarak tüm text widget'ları için geçerli)
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           headlineMedium: TextStyle(
             fontFamily: 'Rubik', // Genel font ailesi
-            fontSize: 32,        // Büyük başlık boyutu
+            fontSize: 32, // Büyük başlık boyutu
             fontWeight: FontWeight.bold,
-            color: Colors.indigo,  // Başlıkların rengi
+            color: Colors.indigo, // Başlıkların rengi
           ),
           bodyMedium: TextStyle(
             fontFamily: 'Rubik',
-            fontSize: 16,         // Normal metin boyutu
-            color: Colors.black,  // Genel metin rengi
+            fontSize: 16, // Normal metin boyutu
+            color: Colors.black, // Genel metin rengi
           ),
         ),
       ),
-      home: HomePage2(),
+      home: const HomePage2(),
     );
   }
 }
@@ -102,17 +104,19 @@ class Becktestcontent {
   Map<String, int> tableData = {};
 
   Becktestcontent() {
-    for (int i = 0; i < this.olcutler.length; i++) {
+    for (int i = 0; i < olcutler.length; i++) {
       olcutekle(olcutler[i]);
     }
   }
 
   void olcutekle(String s) {
-    this.tableData[s] = 0;
+    tableData[s] = 0;
   }
 }
 
 class BeckTestScreen extends StatefulWidget {
+  const BeckTestScreen({super.key});
+
   @override
   _BeckTestScreenState createState() => _BeckTestScreenState();
 }
@@ -133,7 +137,7 @@ class _BeckTestScreenState extends State<BeckTestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BECK ANKSIYETE OLCEGI'),
+        title: const Text('BECK ANKSIYETE OLCEGI'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -145,7 +149,7 @@ class _BeckTestScreenState extends State<BeckTestScreen> {
                 children: [
                   Text(
                     question,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                   DropdownButton<int>(
                     value: answers[question],
@@ -176,11 +180,11 @@ class _BeckTestScreenState extends State<BeckTestScreen> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Test Sonucu"),
+                title: const Text("Test Sonucu"),
                 content: Text("Toplam Puan: $sum"),
                 actions: <Widget>[
                   TextButton(
-                    child: Text("Tamam"),
+                    child: const Text("Tamam"),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -190,13 +194,15 @@ class _BeckTestScreenState extends State<BeckTestScreen> {
             },
           );
         },
-        child: Icon(Icons.check),
+        child: const Icon(Icons.check),
       ),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -267,16 +273,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ana Sayfa'),
+        title: const Text('Ana Sayfa'),
       ),
-      body: Stack(
+      body: const Stack(
         children: [],
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.indigo,
               ),
@@ -289,15 +295,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_box_outlined),
-              title: Text('Hasta Kayıt'),
+              leading: const Icon(Icons.account_box_outlined),
+              title: const Text('Hasta Kayıt'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -310,8 +316,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.access_time),
-              title: Text('Bekleyen Hastalar'),
+              leading: const Icon(Icons.access_time),
+              title: const Text('Bekleyen Hastalar'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -322,15 +328,15 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.check_circle),
-              title: Text('Muayene Et'),
+              leading: const Icon(Icons.check_circle),
+              title: const Text('Muayene Et'),
               onTap: () {
                 _HomePageState.muayeneEtSirayaGore();
               },
             ),
             ListTile(
-              leading: Icon(Icons.done),
-              title: Text('Bakılan Hastalar'),
+              leading: const Icon(Icons.done),
+              title: const Text('Bakılan Hastalar'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -341,8 +347,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.analytics),
-              title: Text('Beck Anksiyete Testi'),
+              leading: const Icon(Icons.analytics),
+              title: const Text('Beck Anksiyete Testi'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -352,10 +358,10 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            Divider(),
+            const Divider(),
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Birey'),
+              leading: const Icon(Icons.person),
+              title: const Text('Birey'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -366,8 +372,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.calendar_today),
-              title: Text('Ajanda'),
+              leading: const Icon(Icons.calendar_today),
+              title: const Text('Ajanda'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -377,10 +383,10 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            Divider(),
+            const Divider(),
             ListTile(
-              leading: Icon(Icons.build),
-              title: Text('Yönetim'),
+              leading: const Icon(Icons.build),
+              title: const Text('Yönetim'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -391,8 +397,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.folder),
-              title: Text('Kaynak Yönetimi'),
+              leading: const Icon(Icons.folder),
+              title: const Text('Kaynak Yönetimi'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -403,8 +409,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.lightbulb),
-              title: Text('Karar Destek'),
+              leading: const Icon(Icons.lightbulb),
+              title: const Text('Karar Destek'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -414,9 +420,35 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.sms),
-              title: Text('SMS Bildirim'),
+            ExpansionTile(
+              leading: const Icon(Icons.sms),
+              title: const Text('SMS Bildirim'),
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.check_box_sharp),
+                  title: Text('Otomatik Bildirimler'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SMSNotificationPage()));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.message_outlined),
+                  title: const Text('SMS Gönder'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SMSSendingPage()));
+                  },
+                ),
+              ],
+            ),
+            /*ListTile(
+              leading: const Icon(Icons.sms),
+              title: const Text('SMS Bildirim'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -425,10 +457,66 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
+            ),*/
+            ExpansionTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Birey İşlemleri'),
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.note_alt_rounded),
+                  title: Text('Hekim Değiştirme Dilekçesi'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.person_off_rounded),
+                  title: const Text('Eski Birey İşlemleri'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.person_pin_rounded),
+                  title: const Text('Mernis Birey İşlemleri'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.person_off_rounded),
+                  title: const Text('Ölen Birey'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.message),
+                  title: const Text('Ölüm Bildirim Sistemi (OBS)'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.message),
+                  title: const Text('E-Sağlık Karar Destek Sistemi'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.message),
+                  title: const Text('Evde Bakım Hizmet Emirleri'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.pregnant_woman_rounded),
+                  title: const Text('Gebelik Cetveli'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.add_circle_outline),
+                  title: const Text('Hasta Kartı Birleştirme'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MergeInpatientCardPage()));
+                  },
+                ),
+              ],
             ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Birey İşlemleri'),
+            /*ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Birey İşlemleri'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -437,10 +525,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-            ),
+            ),*/
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Ayarlar'),
+              leading: const Icon(Icons.settings),
+              title: const Text('Ayarlar'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -451,8 +539,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.remove_red_eye),
-              title: Text('TETKİK İşlemleri'),
+              leading: const Icon(Icons.remove_red_eye),
+              title: const Text('TETKİK İşlemleri'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -463,8 +551,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.cloud_upload),
-              title: Text('Veri Aktarımı'),
+              leading: const Icon(Icons.cloud_upload),
+              title: const Text('Veri Aktarımı'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -474,10 +562,10 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            Divider(),
+            const Divider(),
             ListTile(
-              leading: Icon(Icons.list),
-              title: Text('İşlemler'),
+              leading: const Icon(Icons.list),
+              title: const Text('İşlemler'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -488,8 +576,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.group),
-              title: Text('USS Karar Destek'),
+              leading: const Icon(Icons.group),
+              title: const Text('USS Karar Destek'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -500,8 +588,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.check_rounded),
-              title: Text('Muayene Bitir'),
+              leading: const Icon(Icons.check_rounded),
+              title: const Text('Muayene Bitir'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -521,11 +609,13 @@ class _HomePageState extends State<HomePage> {
 class bilgiPageBekleyen extends StatelessWidget {
   final List<Hasta> waitingPatients = _HomePageState.bekleyenhastalar;
 
+  const bilgiPageBekleyen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bekleyen Hasta Listesi'),
+        title: const Text('Bekleyen Hasta Listesi'),
       ),
       body: ListView.builder(
         itemCount: waitingPatients.length,
@@ -542,11 +632,13 @@ class bilgiPageBekleyen extends StatelessWidget {
 class bilgiPageBakilan extends StatelessWidget {
   final List<Hasta> waitingPatients = _HomePageState.bakilanHastalar;
 
+  const bilgiPageBakilan({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bakılan Hasta Listesi'),
+        title: const Text('Bakılan Hasta Listesi'),
       ),
       body: ListView.builder(
         itemCount: waitingPatients.length,
@@ -635,14 +727,14 @@ class Hasta extends Person {
     this.surname = surname;
   } // Default empty list if null
   String getInfo() {
-    return "${this.name}, ${this.surname}, ${this.yas}";
+    return "${name}, ${surname}, ${yas}";
   }
 }
 
 class HastaEklePage extends StatefulWidget {
   final Function(Hasta) onPatientAdded;
 
-  HastaEklePage({required this.onPatientAdded});
+  const HastaEklePage({super.key, required this.onPatientAdded});
 
   @override
   _HastaEklePageState createState() => _HastaEklePageState();
@@ -789,12 +881,11 @@ class _HastaEklePageState extends State<HastaEklePage> {
   //the birthday's date
 
   void _submit() {
-
     if (_formKey.currentState!.validate()) {
       // Eğer doğum tarihlerinden biri seçilmemişse, uyarı mesajı göster
       if (_mernisDogumTarihi == null || _beyanDogumTarihi == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
               content: Text(
                   'Doğum tarihlerinin her ikisini de seçmeniz gerekiyor.')),
         );
@@ -875,7 +966,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Lütfen tüm alanları doldurun.')),
+        const SnackBar(content: Text('Lütfen tüm alanları doldurun.')),
       );
     }
   }
@@ -915,7 +1006,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
         decoration: InputDecoration(
           labelText: label,
           border: InputBorder.none,
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
         ),
         validator: validator,
         onTap: () {
@@ -953,7 +1044,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
           decoration: InputDecoration(
             labelText: label,
             border: InputBorder.none,
-            contentPadding: EdgeInsets.all(10),
+            contentPadding: const EdgeInsets.all(10),
           ),
           validator: validator,
         ),
@@ -965,7 +1056,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hasta Ekle'),
+        title: const Text('Hasta Ekle'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -975,9 +1066,10 @@ class _HastaEklePageState extends State<HastaEklePage> {
             child: Column(
               children: [
                 // Kişisel Bilgiler Bölümü
-                Text('Kişisel Bilgiler',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                SizedBox(height: 10),
+                const Text('Kişisel Bilgiler',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_isimController, 'İsim',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -985,7 +1077,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                   }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_soyisimController, 'Soyisim',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -993,7 +1085,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                   }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_kimlikNoController, 'Kimlik No',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -1004,20 +1096,19 @@ class _HastaEklePageState extends State<HastaEklePage> {
                   }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_yupassNoController, 'Yupass No',
                     validator: (value) {
-                  if(value==null || value.length == 0)
-                    {
-                      print("inside");
-                      return null;
-                    }
-                  if (value!= null && value.length < 6) {
+                  if (value == null || value.isEmpty) {
+                    print("inside");
+                    return null;
+                  }
+                  if (value.length < 6) {
                     return 'Yupass No en az 6 haneli olmalıdır';
                   }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedUyruk,
                   uyruklar,
@@ -1034,12 +1125,13 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                Divider(height: 30, thickness: 2),
+                const Divider(height: 30, thickness: 2),
                 //Aile Bilgisi
-                Text('Aile Bilgileri',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('Aile Bilgileri',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_babaAdiController, 'Baba Adı',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -1047,7 +1139,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                   }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_anneAdiController, 'Anne Adı',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -1055,17 +1147,18 @@ class _HastaEklePageState extends State<HastaEklePage> {
                   }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_anneKimlikController, 'Anne Kimlik',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Bu alan boş bırakılamaz';
                   }
-                  if (value!= null && value.length < 6) {
-                    return 'TC 11 haneli olmalıdır';}
+                  if (value.length < 6) {
+                    return 'TC 11 haneli olmalıdır';
+                  }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedDogumSirasi,
                   dogumSiralari,
@@ -1082,11 +1175,12 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                Divider(height: 30, thickness: 2),
+                const Divider(height: 30, thickness: 2),
                 // Diğer Bilgiler Bölümü
-                Text('Diğer Bilgiler',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                SizedBox(height: 10),
+                const Text('Diğer Bilgiler',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(
                   _mernisDogumTarihiController,
                   'Mernis Doğum Tarihi',
@@ -1097,7 +1191,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(
                   _beyanDogumTarihiController,
                   'Beyan Doğum Tarihi',
@@ -1108,12 +1202,12 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedDogumYeri,
                   tumSehirler,
                   'Doğum Yeri',
-                      (newValue) {
+                  (newValue) {
                     setState(() {
                       _selectedDogumYeri = newValue;
                     });
@@ -1125,30 +1219,30 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                Divider(height: 30, thickness: 2),
+                const Divider(height: 30, thickness: 2),
 
                 // İletişim Bilgileri Bölümü
-                Text('İletişim Bilgileri',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                SizedBox(height: 10),
+                const Text('İletişim Bilgileri',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_evTelController, 'Ev Telefonu',
-                    validator:null),
-                SizedBox(height: 10),
+                    validator: null),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_isTelController, 'İş Telefonu',
                     validator: null),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_cepTelController, 'Cep Telefonu',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Bu alan boş bırakılamaz';
                   }
-                  if(value.length != 11)
-                    {
-                      return 'Telefon numaranız 11 haneli olmalıdır.';
-                    }
+                  if (value.length != 11) {
+                    return 'Telefon numaranız 11 haneli olmalıdır.';
+                  }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_faxNoController, 'Fax Numarası',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -1156,7 +1250,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                   }
                   return null;
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedTextField(_emailController, 'E-posta',
                     validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -1169,14 +1263,15 @@ class _HastaEklePageState extends State<HastaEklePage> {
                   }
                   return null;
                 }),
-                Divider(height: 30, thickness: 2),
+                const Divider(height: 30, thickness: 2),
 
                 // Diğer Bilgiler Bölümü
 
-                SizedBox(height: 10),
-                Text('Diğer Bilgiler',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
+                const Text('Diğer Bilgiler',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedSGK,
                   sgkOptions,
@@ -1209,7 +1304,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedCinsiyet,
                   cinsiyetOptions,
@@ -1226,7 +1321,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedKayitDurumu,
                   kayitDurumuOptions,
@@ -1243,7 +1338,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedOncelikDurumu,
                   oncelikDurumuOptions,
@@ -1260,7 +1355,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildRoundedDropdown(
                   _selectedKanGrubu,
                   kanGrubuOptions,
@@ -1277,10 +1372,10 @@ class _HastaEklePageState extends State<HastaEklePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _submit,
-                  child: Text('Kaydet'),
+                  child: const Text('Kaydet'),
                 ),
               ],
             ),
@@ -1300,7 +1395,7 @@ Widget iconandtext(IconData icon, String text) {
     mainAxisSize: MainAxisSize.min,
     children: [
       Icon(icon, color: Colors.black),
-      SizedBox(width: 8),
+      const SizedBox(width: 8),
       Text(text),
     ],
   );
@@ -1356,18 +1451,18 @@ class _HomePageState2 extends State<HomePage2> {
         );
       } else {
         // Yanıttan hata mesajı alma
-        final errorMessage = 'Hatalı kullanıcı adı veya parola';
+        const errorMessage = 'Hatalı kullanıcı adı veya parola';
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(errorMessage)),
         );
       }
     } else {
       // Yanıtı konsola yazdırma
-      print('Yanıt: ${response}');
+      print('Yanıt: $response');
 
       // Bir hata oluştuysa kullanıcıya bildirme
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Geçersiz e-posta veya şifre')),
+        const SnackBar(content: Text('Geçersiz e-posta veya şifre')),
       );
     }
   }
@@ -1377,7 +1472,7 @@ class _HomePageState2 extends State<HomePage2> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/sisofamily.png'),
-        backgroundColor: Color.fromARGB(255, 236, 233, 233),
+        backgroundColor: const Color.fromARGB(255, 236, 233, 233),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -1385,7 +1480,7 @@ class _HomePageState2 extends State<HomePage2> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Aile Hekimliği Bilgi Sistemi',
               style: TextStyle(
                 fontSize: 25,
@@ -1393,7 +1488,7 @@ class _HomePageState2 extends State<HomePage2> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Form(
               child: Row(
                 children: [
@@ -1401,7 +1496,7 @@ class _HomePageState2 extends State<HomePage2> {
                 ],
               ),
             ),
-            Form(
+            const Form(
               child: Column(
                 children: [
                   Text(
@@ -1409,22 +1504,22 @@ class _HomePageState2 extends State<HomePage2> {
                 ],
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             TextFormField(
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'E-posta',
                 hintText: 'E-postanızı girin',
                 prefixIcon: Icon(Icons.email),
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             TextFormField(
               controller: _passwordController,
               keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Parola',
                 hintText: 'Parolanızı girin',
                 prefixIcon: Icon(Icons.password),
@@ -1438,24 +1533,24 @@ class _HomePageState2 extends State<HomePage2> {
                   onPressed: () {
                     if (_emailController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                             content: Text('Lütfen E-posta adresinizi giriniz')),
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                             content: Text('Yeni Şifreniz SMS Olarak İletildi')),
                       );
                     }
                   },
-                  icon: Icon(Icons.question_mark, color: Colors.grey),
-                  label: Text(
+                  icon: const Icon(Icons.question_mark, color: Colors.grey),
+                  label: const Text(
                     'Şifremi Unuttum ',
                     style: TextStyle(color: Colors.grey),
                   ),
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(10.0),
-                    textStyle: TextStyle(
+                    padding: const EdgeInsets.all(10.0),
+                    textStyle: const TextStyle(
                       color: Colors.grey,
                       fontSize: 15,
                       fontWeight: FontWeight.normal,
@@ -1464,7 +1559,7 @@ class _HomePageState2 extends State<HomePage2> {
                 ),
               ],
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -1477,11 +1572,10 @@ class _HomePageState2 extends State<HomePage2> {
                       ),
                     );
                   },
-                  child: Text('E-İmza'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(10.0),
-                    fixedSize: Size(150, 65),
-                    textStyle: TextStyle(
+                    padding: const EdgeInsets.all(10.0),
+                    fixedSize: const Size(150, 65),
+                    textStyle: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -1490,14 +1584,14 @@ class _HomePageState2 extends State<HomePage2> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
+                  child: Text('E-İmza'),
                 ),
                 ElevatedButton(
                   onPressed: _login,
-                  child: Text('Giriş'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(10.0),
-                    fixedSize: Size(150, 65),
-                    textStyle: TextStyle(
+                    padding: const EdgeInsets.all(10.0),
+                    fixedSize: const Size(150, 65),
+                    textStyle: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -1506,12 +1600,13 @@ class _HomePageState2 extends State<HomePage2> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
+                  child: Text('Giriş'),
                 ),
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Image.asset('assets/line.png'),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Align(
               alignment: Alignment.topRight,
               child: Image.asset('assets/rightheader.png'),
@@ -1531,9 +1626,9 @@ class _HomePageState2 extends State<HomePage2> {
                     Icons.check, 'İnsan modeli üzerinden bulgu ekleyebilme'),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Image.asset('assets/line.png'),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -1546,14 +1641,15 @@ class _HomePageState2 extends State<HomePage2> {
                       ),
                     );
                   },
-                  icon: Icon(Icons.account_box_outlined, color: Colors.grey),
-                  label: Text(
+                  icon: const Icon(Icons.account_box_outlined,
+                      color: Colors.grey),
+                  label: const Text(
                     'Yeni Hekim Kaydet ',
                     style: TextStyle(color: Colors.grey),
                   ),
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(10.0),
-                    textStyle: TextStyle(
+                    padding: const EdgeInsets.all(10.0),
+                    textStyle: const TextStyle(
                       color: Colors.grey,
                       fontSize: 35,
                       fontWeight: FontWeight.normal,
@@ -1570,6 +1666,8 @@ class _HomePageState2 extends State<HomePage2> {
 }
 
 class Savedoctor extends StatefulWidget {
+  const Savedoctor({super.key});
+
   @override
   _SavedoctorState createState() => _SavedoctorState();
 }
@@ -1584,23 +1682,23 @@ class _SavedoctorState extends State<Savedoctor> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/sisofamily.png'),
-        backgroundColor: Color.fromARGB(255, 236, 233, 233),
+        backgroundColor: const Color.fromARGB(255, 236, 233, 233),
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            const Row(
               children: [
                 Icon(Icons.person, color: Colors.black),
                 SizedBox(width: 8),
                 Text('Kimlik Bilgileri', style: TextStyle(fontSize: 20)),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Checkbox(
@@ -1611,23 +1709,23 @@ class _SavedoctorState extends State<Savedoctor> {
                     });
                   },
                 ),
-                Text('Aile Hekimi Değilim'),
+                const Text('Aile Hekimi Değilim'),
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             textbar('Adı'),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             textbar('Soyadı'),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             textbar('TC Kimlik No'),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             textbar('ÇKYS Kodu'),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'İlçe',
                       hintText: '...',
                       border: OutlineInputBorder(),
@@ -1639,11 +1737,11 @@ class _SavedoctorState extends State<Savedoctor> {
                     },
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: TextFormField(
                     enabled: _isIlceFilled,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'İl',
                       hintText: '...',
                       border: OutlineInputBorder(),
@@ -1652,12 +1750,12 @@ class _SavedoctorState extends State<Savedoctor> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             if (_isChecked == false) ...[
               textbar('A.H. Birim Numarası'),
             ],
-            SizedBox(height: 10),
-            Align(
+            const SizedBox(height: 10),
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 '* Tüm alanların doldurulması zorunludur',
@@ -1666,16 +1764,15 @@ class _SavedoctorState extends State<Savedoctor> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   // Handle save action
                 },
-                child: Text('Kaydet'),
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.all(10.0),
-                  textStyle: TextStyle(
+                  padding: const EdgeInsets.all(10.0),
+                  textStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -1684,6 +1781,7 @@ class _SavedoctorState extends State<Savedoctor> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
+                child: Text('Kaydet'),
               ),
             ),
           ],
@@ -1697,37 +1795,39 @@ class _SavedoctorState extends State<Savedoctor> {
       decoration: InputDecoration(
         labelText: text,
         hintText: '...',
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
   }
 }
 
 class esign extends StatelessWidget {
+  const esign({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/sisofamily.png'),
-        backgroundColor: Color.fromARGB(255, 236, 233, 233),
+        backgroundColor: const Color.fromARGB(255, 236, 233, 233),
         centerTitle: true,
       ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             TextFormField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: 'PIN Numaranızı Giriniz',
                   hintText: '...',
                   prefixIcon: Icon(Icons.sms),
                   border: OutlineInputBorder()),
             ),
-            ElevatedButton(onPressed: () {}, child: Text('Gönder'))
+            ElevatedButton(onPressed: () {}, child: const Text('Gönder'))
           ],
         ),
       ),
@@ -1736,6 +1836,8 @@ class esign extends StatelessWidget {
 }
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -1754,7 +1856,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/sisofamily.png'),
-        backgroundColor: Color.fromARGB(255, 236, 233, 233),
+        backgroundColor: const Color.fromARGB(255, 236, 233, 233),
         centerTitle: true,
       ),
       body: HomePage(),
@@ -1771,7 +1873,7 @@ class Doktor extends Person {
     this.branch = branch;
   }
   void hastaBak(Hasta hasta) {
-    this.bakilmisHastalar.add(hasta);
+    bakilmisHastalar.add(hasta);
     hasta.hastaneGecmisi.add(this);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HastaEklePage extends StatefulWidget {
+  const HastaEklePage({super.key});
+
   @override
   _HastaEklePageState createState() => _HastaEklePageState();
 }
@@ -35,7 +37,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hasta Ekle'),
+        title: const Text('Hasta Ekle'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -47,198 +49,198 @@ class _HastaEklePageState extends State<HastaEklePage> {
                 // Kimlik No
                 TextFormField(
                   controller: _kimlikNoController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Kimlik No',
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // YUPASS No
                 TextFormField(
                   controller: _yupassNoController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'YUPASS No',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Adı
                 TextFormField(
                   controller: _adiController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Adı',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Soyadı
                 TextFormField(
                   controller: _soyadiController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Soyadı',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Doğum Yeri
                 TextFormField(
                   controller: _dogumYeriController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Doğum Yeri',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Mernis Doğum
                 TextFormField(
                   controller: _mernisDogumController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Mernis Doğum',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Beyan Doğum
                 TextFormField(
                   controller: _beyanDogumController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Beyan Doğum',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Anne Adı
                 TextFormField(
                   controller: _anneAdiController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Anne Adı',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Baba Adı
                 TextFormField(
                   controller: _babaAdiController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Baba Adı',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // SGK
                 TextFormField(
                   controller: _sgkController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'SGK',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Medeni Hali
                 TextFormField(
                   controller: _medeniHaliController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Medeni Hali',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Cinsiyet
                 TextFormField(
                   controller: _cinsiyetController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Cinsiyet',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Kayıt Durumu
                 TextFormField(
                   controller: _kayitDurumuController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Kayıt Durumu',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Öncelik Durumu
                 TextFormField(
                   controller: _oncelikDurumuController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Öncelik Durumu',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Uyruğu
                 TextFormField(
                   controller: _uyrukController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Uyruğu',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Kan Grubu
                 TextFormField(
                   controller: _kanGrubuController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Kan Grubu',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Ev Tel
                 TextFormField(
                   controller: _evTelController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Ev Tel',
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.phone,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // İş Tel
                 TextFormField(
                   controller: _isTelController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'İş Tel',
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.phone,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Cep Tel
                 TextFormField(
                   controller: _cepTelController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Cep Tel',
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.phone,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Fax No
                 TextFormField(
                   controller: _faxNoController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Fax No',
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.phone,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // E-Mail
                 TextFormField(
                   controller: _emailController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'E-Mail',
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.emailAddress,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Save Button
                 ElevatedButton(
                   onPressed: () {
@@ -247,7 +249,7 @@ class _HastaEklePageState extends State<HastaEklePage> {
                       print("Data saved successfully");
                     }
                   },
-                  child: Text('Kaydet'),
+                  child: const Text('Kaydet'),
                 ),
               ],
             ),

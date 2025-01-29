@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 class IndividualPage extends StatefulWidget {
+  const IndividualPage({super.key});
+
   @override
   _IndividualPageState createState() => _IndividualPageState();
 }
 
 class _IndividualPageState extends State<IndividualPage> {
   final TextEditingController _noteController = TextEditingController();
-  List<String> _notes = [];
+  final List<String> _notes = [];
 
   void _addNote() {
     if (_noteController.text.isNotEmpty) {
@@ -24,40 +27,42 @@ class _IndividualPageState extends State<IndividualPage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Birey'),
+          title: const Text('Birey'),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Colors.white,
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.person), text: 'BİREY'),
               Tab(icon: Icon(Icons.settings), text: 'İŞLEMLER'),
             ],
-            labelColor: Colors.white,             // Seçili tab ikon ve metin rengi
-            unselectedLabelColor: Colors.grey,     // Seçili olmayan tab ikon ve metin rengi
-            indicatorColor: Colors.white,   // Seçili tab altındaki çizgi rengi
-            labelStyle: TextStyle(                 // Seçili tab yazı stili
+            labelColor: Colors.white, // Seçili tab ikon ve metin rengi
+            unselectedLabelColor:
+                Colors.grey, // Seçili olmayan tab ikon ve metin rengi
+            indicatorColor: Colors.white, // Seçili tab altındaki çizgi rengi
+            labelStyle: TextStyle(
+              // Seçili tab yazı stili
               fontSize: 14,
               fontWeight: FontWeight.bold,
               fontFamily: 'Rubik',
             ),
-            unselectedLabelStyle: TextStyle(       // Seçili olmayan tab yazı stili
+            unselectedLabelStyle: TextStyle(
+              // Seçili olmayan tab yazı stili
               fontSize: 14,
               fontFamily: 'Rubik',
             ),
           ),
-
         ),
         endDrawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.blue,
                 ),
                 child: Row(
@@ -66,10 +71,11 @@ class _IndividualPageState extends State<IndividualPage> {
                     CircleAvatar(
                       radius: 20,
                       backgroundColor: Colors.blue[200],
-                      child: Icon(Icons.person, size: 25, color: Colors.white),
+                      child: const Icon(Icons.person,
+                          size: 25, color: Colors.white),
                     ),
-                    SizedBox(width: 20),
-                    Expanded(
+                    const SizedBox(width: 20),
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -120,28 +126,28 @@ class _IndividualPageState extends State<IndividualPage> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.calendar_today),
-                title: Text('Birey Ajanda'),
+                leading: const Icon(Icons.calendar_today),
+                title: const Text('Birey Ajanda'),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.info),
-                title: Text('Birey Bilgileri'),
+                leading: const Icon(Icons.info),
+                title: const Text('Birey Bilgileri'),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.history),
-                title: Text('Geçmiş Kayıtlar'),
+                leading: const Icon(Icons.history),
+                title: const Text('Geçmiş Kayıtlar'),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.file_copy),
-                title: Text('Belgeler'),
+                leading: const Icon(Icons.file_copy),
+                title: const Text('Belgeler'),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Ayarlar'),
+                leading: const Icon(Icons.settings),
+                title: const Text('Ayarlar'),
                 onTap: () {},
               ),
               // Diğer drawer öğeleri burada yer alabilir
@@ -163,7 +169,7 @@ class _IndividualPageState extends State<IndividualPage> {
                         Expanded(
                           child: Center(
                             child: Container(
-                              padding: EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(16.0),
                               decoration: BoxDecoration(
                                 color: Colors.indigo,
                                 borderRadius: BorderRadius.circular(12.0),
@@ -172,11 +178,11 @@ class _IndividualPageState extends State<IndividualPage> {
                                     color: Colors.black.withOpacity(0.1),
                                     spreadRadius: 2,
                                     blurRadius: 6,
-                                    offset: Offset(0, 3),
+                                    offset: const Offset(0, 3),
                                   ),
                                 ],
                               ),
-                              child: Column(
+                              child: const Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
@@ -195,65 +201,79 @@ class _IndividualPageState extends State<IndividualPage> {
                         )
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Container(
-                      padding: EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(12.0),
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      child: Column(
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('• NAZLI ZEYNEP ESKİCİ adlı bireyin size ilk gelişi:', style: TextStyle(fontSize: 16)),
+                          Text(
+                              '• NAZLI ZEYNEP ESKİCİ adlı bireyin size ilk gelişi:',
+                              style: TextStyle(fontSize: 16)),
                           SizedBox(height: 5),
-                          Text('• NAZLI ZEYNEP ESKİCİ isimli en son 11.05.2015 tarihinde işlem yapılmış', style: TextStyle(fontSize: 16)),
+                          Text(
+                              '• NAZLI ZEYNEP ESKİCİ isimli en son 11.05.2015 tarihinde işlem yapılmış',
+                              style: TextStyle(fontSize: 16)),
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Container(
                       color: Colors.grey[200],
-                      padding: EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Notlar', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                          SizedBox(height: 10),
+                          const Text('Notlar',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          const SizedBox(height: 10),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: _notes.map((note) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4.0),
-                              child: Text('• $note', style: TextStyle(fontSize: 16)),
-                            )).toList(),
+                            children: _notes
+                                .map((note) => Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 4.0),
+                                      child: Text('• $note',
+                                          style: const TextStyle(fontSize: 16)),
+                                    ))
+                                .toList(),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           TextField(
                             controller: _noteController,
                             maxLines: 1,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: 'Yeni not ekleyin',
                               border: OutlineInputBorder(),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: _addNote,
-                            child: Text('Not Ekle'),
+                            child: const Text('Not Ekle'),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Wrap(
                       spacing: 8.0,
                       runSpacing: 8.0,
                       children: [
-                        ElevatedButton(onPressed: () {}, child: Text('Birey Bilgileri')),
-                        ElevatedButton(onPressed: () {}, child: Text('Hastanın Geçmiş Özeti')),
+                        ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Birey Bilgileri')),
+                        ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Hastanın Geçmiş Özeti')),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -266,78 +286,86 @@ class _IndividualPageState extends State<IndividualPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListTile(
-                      leading: Icon(Icons.add_box),
-                      title: Text('Okul Çağı Çocuk/Genç Ara İzlem'),
+                      leading: const Icon(Icons.add_box),
+                      title: const Text('Okul Çağı Çocuk/Genç Ara İzlem'),
                       onTap: () {},
                     ),
                     ListTile(
-                      leading: Icon(Icons.woman),
-                      title: Text('Kadın İzlem'),
-                      trailing: Text('Henüz İzlem Yapılmamış', style: TextStyle(color: Colors.green)),
+                      leading: const Icon(Icons.woman),
+                      title: const Text('Kadın İzlem'),
+                      trailing: const Text('Henüz İzlem Yapılmamış',
+                          style: TextStyle(color: Colors.green)),
                       onTap: () {},
                     ),
                     ListTile(
-                      leading: Icon(Icons.medical_services),
-                      title: Text('Muayene'),
+                      leading: const Icon(Icons.medical_services),
+                      title: const Text('Muayene'),
                       onTap: () {},
                     ),
                     ListTile(
-                      leading: Icon(Icons.science),
-                      title: Text('Tetkik'),
-                      onTap: () {Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TetkikPage()),
-                      );},
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.healing),
-                      title: Text('Müdahale/Enjeksiyon'),
-                      onTap: () {},
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.vaccines),
-                      title: Text('Aşı (İzlem Dışında)'),
+                      leading: const Icon(Icons.science),
+                      title: const Text('Tetkik'),
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => VaccinationPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const TetkikPage()),
                         );
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.copyright),
-                      title: Text('Kanser'),
+                      leading: const Icon(Icons.healing),
+                      title: const Text('Müdahale/Enjeksiyon'),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.vaccines),
+                      title: const Text('Aşı (İzlem Dışında)'),
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CancerTrackingPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const VaccinationPage()),
                         );
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.description),
-                      title: Text('Reçete'),
-                      trailing: Text('Son Reçete 11.05.2015', style: TextStyle(color: Colors.green)),
-                      onTap: () {},
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.report),
-                      title: Text('Rapor'),
+                      leading: const Icon(Icons.copyright),
+                      title: const Text('Kanser'),
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ReportPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const CancerTrackingPage()),
                         );
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.group),
-                      title: Text('Ev Halkı Tes.Fişi'),
+                      leading: const Icon(Icons.description),
+                      title: const Text('Reçete'),
+                      trailing: const Text('Son Reçete 11.05.2015',
+                          style: TextStyle(color: Colors.green)),
                       onTap: () {},
                     ),
                     ListTile(
-                      leading: Icon(Icons.family_restroom),
-                      title: Text('Aile İçi Şiddet Formu'),
+                      leading: const Icon(Icons.report),
+                      title: const Text('Rapor'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ReportPage()),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.group),
+                      title: const Text('Ev Halkı Tes.Fişi'),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.family_restroom),
+                      title: const Text('Aile İçi Şiddet Formu'),
                       onTap: () {},
                     ),
                   ],
@@ -351,7 +379,6 @@ class _IndividualPageState extends State<IndividualPage> {
   }
 }
 
-
 class Tetkik {
   final String baslik;
   final List<String> tetkikler;
@@ -360,12 +387,13 @@ class Tetkik {
 }
 
 class TetkikPage extends StatefulWidget {
+  const TetkikPage({super.key});
+
   @override
-  _TetkikPageState createState() =>
-      _TetkikPageState();
+  _TetkikPageState createState() => _TetkikPageState();
 }
 
-class _TetkikPageState  extends State<TetkikPage> {
+class _TetkikPageState extends State<TetkikPage> {
   List<Tetkik> tetkikler = [
     Tetkik(
       baslik: 'Biyokimya',
@@ -500,18 +528,18 @@ class _TetkikPageState  extends State<TetkikPage> {
   void initState() {
     super.initState();
     // Başlangıçta tüm tetkikleri seçilmemiş olarak işaretle
-    tetkikler.forEach((tetkik) {
-      tetkik.tetkikler.forEach((tetkikAdi) {
+    for (var tetkik in tetkikler) {
+      for (var tetkikAdi in tetkik.tetkikler) {
         selectedTetkikler[tetkikAdi] = false;
-      });
-    });
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tetkik Listesi'),
+        title: const Text('Tetkik Listesi'),
       ),
       body: ListView.builder(
         itemCount: tetkikler.length,
@@ -522,12 +550,13 @@ class _TetkikPageState  extends State<TetkikPage> {
               borderRadius: BorderRadius.circular(15),
             ),
             elevation: 5,
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: ExpansionTile(
               title: Text(kategori.baslik),
               children: kategori.tetkikler.map((tetkik) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -555,6 +584,8 @@ class _TetkikPageState  extends State<TetkikPage> {
 }
 
 class ReportPage extends StatefulWidget {
+  const ReportPage({super.key});
+
   @override
   _ReportPageState createState() => _ReportPageState();
 }
@@ -583,8 +614,7 @@ class _ReportPageState extends State<ReportPage> {
   void _filterReports(String query) {
     setState(() {
       filteredReports = reportTypes
-          .where((report) =>
-          report.toLowerCase().contains(query.toLowerCase()))
+          .where((report) => report.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -593,7 +623,7 @@ class _ReportPageState extends State<ReportPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rapor Seçimi'),
+        title: const Text('Rapor Seçimi'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -605,13 +635,13 @@ class _ReportPageState extends State<ReportPage> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
               ),
               onChanged: (value) {
                 _filterReports(value);
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
                 itemCount: filteredReports.length,
@@ -621,7 +651,7 @@ class _ReportPageState extends State<ReportPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     elevation: 3,
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
                       title: Text(filteredReports[index]),
                       onTap: () {
@@ -633,7 +663,7 @@ class _ReportPageState extends State<ReportPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => RestReportPage(),
+                              builder: (context) => const RestReportPage(),
                             ),
                           );
                         } else if (selectedReport ==
@@ -641,7 +671,8 @@ class _ReportPageState extends State<ReportPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SingleDoctorReportPage(),
+                              builder: (context) =>
+                                  const SingleDoctorReportPage(),
                             ),
                           );
                         }
@@ -659,6 +690,8 @@ class _ReportPageState extends State<ReportPage> {
 }
 
 class RestReportPage extends StatefulWidget {
+  const RestReportPage({super.key});
+
   @override
   _RestReportPageState createState() => _RestReportPageState();
 }
@@ -693,7 +726,7 @@ class _RestReportPageState extends State<RestReportPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('İstirahat Raporu'),
+        title: const Text('İstirahat Raporu'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -701,31 +734,31 @@ class _RestReportPageState extends State<RestReportPage> {
           children: [
             TextField(
               controller: _dateController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Tarih',
                 hintText: 'Tarih Seçiniz',
               ),
               readOnly: true,
               onTap: () => _selectDate(context),
             ),
-            TextField(
+            const TextField(
               decoration: InputDecoration(labelText: 'Süresi'),
             ),
-            TextField(
+            const TextField(
               decoration: InputDecoration(labelText: 'Sonuç'),
             ),
-            TextField(
+            const TextField(
               decoration: InputDecoration(labelText: 'Kurum Adı'),
             ),
-            TextField(
+            const TextField(
               decoration: InputDecoration(labelText: 'Açıklama'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Save or print functionality
               },
-              child: Text('Yazdır'),
+              child: const Text('Yazdır'),
             ),
           ],
         ),
@@ -735,19 +768,21 @@ class _RestReportPageState extends State<RestReportPage> {
 }
 
 class SingleDoctorReportPage extends StatelessWidget {
+  const SingleDoctorReportPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Durum Bildirir Tek Hekim Sağlık Raporu'),
+        title: const Text('Durum Bildirir Tek Hekim Sağlık Raporu'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(labelText: 'Verilme Nedeni'),
-              items: [
+              decoration: const InputDecoration(labelText: 'Verilme Nedeni'),
+              items: const [
                 DropdownMenuItem(
                     value: 'İş Sağlığı ve Güvenliği',
                     child: Text('İş Sağlığı ve Güvenliği')),
@@ -769,27 +804,49 @@ class SingleDoctorReportPage extends StatelessWidget {
   }
 }
 
-
 class CancerTrackingPage extends StatefulWidget {
+  const CancerTrackingPage({super.key});
+
   @override
   _CancerTrackingPageState createState() => _CancerTrackingPageState();
 }
 
 class _CancerTrackingPageState extends State<CancerTrackingPage> {
   String _selectedScreeningType = 'Kolorektal';
-  List<String> _familyHistory = [];
+  final List<String> _familyHistory = [];
   bool _isAddingFamilyHistory = false;
-  TextEditingController _familyHistoryController = TextEditingController();
+  final TextEditingController _familyHistoryController =
+      TextEditingController();
 
   DateTime? _screeningDate;
   DateTime? _resultDate;
 
   final List<String> _screeningTypes = ['Kolorektal', 'Meme', 'Serviks'];
-  final List<String> _biopsyResults = ['Normal', 'Kanser', 'Polip', 'Kolit', 'Yetersiz Materyal', 'Diğer Patolojiler'];
-  final List<String> _memeResults = ['Kendi Kendine Meme Muayenesi', 'Klinik Meme Muayenesi', 'Mamografi'];
+  final List<String> _biopsyResults = [
+    'Normal',
+    'Kanser',
+    'Polip',
+    'Kolit',
+    'Yetersiz Materyal',
+    'Diğer Patolojiler'
+  ];
+  final List<String> _memeResults = [
+    'Kendi Kendine Meme Muayenesi',
+    'Klinik Meme Muayenesi',
+    'Mamografi'
+  ];
   final List<String> _hpvTypes = ['HPV Tip 16', 'HPV Tip 18', 'Diğer', '31'];
-  final List<String> _cervicalCytologyResults = ['Normal', 'Enfeksiyon', 'ASC-US'];
-  final List<String> _cervicalBiopsyResults = ['Normal', 'Kori-Nik', 'CIN 1', 'CIN 2'];
+  final List<String> _cervicalCytologyResults = [
+    'Normal',
+    'Enfeksiyon',
+    'ASC-US'
+  ];
+  final List<String> _cervicalBiopsyResults = [
+    'Normal',
+    'Kori-Nik',
+    'CIN 1',
+    'CIN 2'
+  ];
 
   String? _selectedMemeKendiKendineOption;
   String? _selectedMemeKlinikOption;
@@ -825,7 +882,7 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kanser Tarama'),
+        title: const Text('Kanser Tarama'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -834,7 +891,8 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Tarama Tipleri Radio Button
-              Text('Tarama Tipleri', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('Tarama Tipleri',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: _screeningTypes.map((type) {
@@ -856,18 +914,19 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                   );
                 }).toList(),
               ),
-              Divider(),
+              const Divider(),
 
               // Tarama Tarihi ve Sonuçlanma Tarihi
-              Text('Tarama Tarihi ve Sonuçlanma Tarihi', style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: 8.0),
+              const Text('Tarama Tarihi ve Sonuçlanma Tarihi',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8.0),
               Row(
                 children: [
                   Expanded(
                     child: InkWell(
                       onTap: () => _selectDate(context, true),
                       child: InputDecorator(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Tarama Tarihi',
                         ),
                         child: Text(_screeningDate == null
@@ -876,12 +935,12 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: InkWell(
                       onTap: () => _selectDate(context, false),
                       child: InputDecorator(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Sonuçlanma Tarihi',
                         ),
                         child: Text(_resultDate == null
@@ -892,17 +951,21 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
 
               // İşlem No ve İşlem Tarihi (Statik)
-              Text('İşlem Bilgileri', style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: 8.0),
-              Text('İşlem No: 123456', style: TextStyle(color: Colors.grey)),
-              Text('İşlem Tarihi: 01-01-2023', style: TextStyle(color: Colors.grey)),
-              SizedBox(height: 16.0),
+              const Text('İşlem Bilgileri',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8.0),
+              const Text('İşlem No: 123456',
+                  style: TextStyle(color: Colors.grey)),
+              const Text('İşlem Tarihi: 01-01-2023',
+                  style: TextStyle(color: Colors.grey)),
+              const SizedBox(height: 16.0),
 
               // Aile Öyküsü
-              Text('Aile Öyküsü', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('Aile Öyküsü',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               if (_familyHistory.isNotEmpty)
                 ListView.builder(
                   shrinkWrap: true,
@@ -913,11 +976,12 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                     );
                   },
                 ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               if (_isAddingFamilyHistory)
                 TextField(
                   controller: _familyHistoryController,
-                  decoration: InputDecoration(labelText: 'Aile Öyküsü Girin'),
+                  decoration:
+                      const InputDecoration(labelText: 'Aile Öyküsü Girin'),
                 ),
               ElevatedButton(
                 onPressed: () {
@@ -931,14 +995,16 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                     _isAddingFamilyHistory = !_isAddingFamilyHistory;
                   });
                 },
-                child: Text(_isAddingFamilyHistory ? 'Kaydet' : 'Aile Öyküsü Ekle'),
+                child: Text(
+                    _isAddingFamilyHistory ? 'Kaydet' : 'Aile Öyküsü Ekle'),
               ),
-              Divider(),
-              SizedBox(height: 16.0),
+              const Divider(),
+              const SizedBox(height: 16.0),
 
               // Tarama Tipine Göre Dinamik İçerik
               if (_selectedScreeningType == 'Kolorektal') ...[
-                Text('Kolorektal Biyopsi Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Kolorektal Biyopsi Sonuçları',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedBiopsyResultKolorektal,
                   items: _biopsyResults.map((result) {
@@ -952,9 +1018,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedBiopsyResultKolorektal = value;
                     });
                   },
-                  hint: Text('Sonuç Seçin'),
+                  hint: const Text('Sonuç Seçin'),
                 ),
-                Text('Gaitada Gizli Kan Testi', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Gaitada Gizli Kan Testi',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedGaitadaTesti,
                   items: ['Pozitif', 'Negatif'].map((result) {
@@ -968,11 +1035,13 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedGaitadaTesti = value;
                     });
                   },
-                  hint: Text('Test Seçin'),
+                  hint: const Text('Test Seçin'),
                 ),
               ] else if (_selectedScreeningType == 'Meme') ...[
-                Text('Meme Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
-                Text('Kendi Kendine Meme Muayenesi', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Meme Sonuçları',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Kendi Kendine Meme Muayenesi',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedMemeKendiKendineOption,
                   items: _memeResults.map((result) {
@@ -986,9 +1055,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedMemeKendiKendineOption = value;
                     });
                   },
-                  hint: Text('Seçenek Seçin'),
+                  hint: const Text('Seçenek Seçin'),
                 ),
-                Text('Klinik Meme Muayenesi', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Klinik Meme Muayenesi',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedMemeKlinikOption,
                   items: _memeResults.map((result) {
@@ -1002,9 +1072,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedMemeKlinikOption = value;
                     });
                   },
-                  hint: Text('Seçenek Seçin'),
+                  hint: const Text('Seçenek Seçin'),
                 ),
-                Text('Mamografi', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Mamografi',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedMemeMamografiOption,
                   items: _memeResults.map((result) {
@@ -1018,10 +1089,11 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedMemeMamografiOption = value;
                     });
                   },
-                  hint: Text('Seçenek Seçin'),
+                  hint: const Text('Seçenek Seçin'),
                 ),
               ] else if (_selectedScreeningType == 'Serviks') ...[
-                Text('HPV Tarama Testi', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('HPV Tarama Testi',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedHpvTaramaTestiOption,
                   items: ['Seçenek 1', 'Seçenek 2'].map((option) {
@@ -1035,9 +1107,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedHpvTaramaTestiOption = value;
                     });
                   },
-                  hint: Text('Test Seçin'),
+                  hint: const Text('Test Seçin'),
                 ),
-                Text('Pap Smear Testi', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Pap Smear Testi',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedPapSmearTestiOption,
                   items: ['Seçenek 1', 'Seçenek 2'].map((option) {
@@ -1051,9 +1124,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedPapSmearTestiOption = value;
                     });
                   },
-                  hint: Text('Test Seçin'),
+                  hint: const Text('Test Seçin'),
                 ),
-                Text('Servikal Sitoloji Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Servikal Sitoloji Sonuçları',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedCytologyResult,
                   items: _cervicalCytologyResults.map((result) {
@@ -1067,9 +1141,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedCytologyResult = value;
                     });
                   },
-                  hint: Text('Sonuç Seçin'),
+                  hint: const Text('Sonuç Seçin'),
                 ),
-                Text('Servikal Biyopsi Sonuçları', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Servikal Biyopsi Sonuçları',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedBiopsyResultServiks,
                   items: _cervicalBiopsyResults.map((result) {
@@ -1083,9 +1158,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedBiopsyResultServiks = value;
                     });
                   },
-                  hint: Text('Sonuç Seçin'),
+                  hint: const Text('Sonuç Seçin'),
                 ),
-                Text('HPV Tipleri', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('HPV Tipleri',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   value: _selectedHpvType,
                   items: _hpvTypes.map((type) {
@@ -1099,10 +1175,10 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                       _selectedHpvType = value;
                     });
                   },
-                  hint: Text('HPV Tipi Seçin'),
+                  hint: const Text('HPV Tipi Seçin'),
                 ),
               ],
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
 
               // Kaydet ve Randevu Butonları
               Row(
@@ -1112,13 +1188,13 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
                     onPressed: () {
                       // Kaydetme işlemi
                     },
-                    child: Text('Kaydet'),
+                    child: const Text('Kaydet'),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       // Kanser randevusu alma işlemi
                     },
-                    child: Text('Kanser Randevusu'),
+                    child: const Text('Kanser Randevusu'),
                   ),
                 ],
               ),
@@ -1131,6 +1207,8 @@ class _CancerTrackingPageState extends State<CancerTrackingPage> {
 }
 
 class VaccinationPage extends StatefulWidget {
+  const VaccinationPage({super.key});
+
   @override
   _VaccinationPageState createState() => _VaccinationPageState();
 }
@@ -1140,9 +1218,9 @@ class _VaccinationPageState extends State<VaccinationPage> {
   final TextEditingController _complaintController = TextEditingController();
   final TextEditingController _vaccinationController = TextEditingController();
 
-  List<Map<String, String>> _stories = [];
-  List<Map<String, String>> _complaints = [];
-  List<Map<String, String>> _vaccinations = [];
+  final List<Map<String, String>> _stories = [];
+  final List<Map<String, String>> _complaints = [];
+  final List<Map<String, String>> _vaccinations = [];
 
   String _formatDateTime(DateTime dateTime) {
     return "${dateTime.day.toString().padLeft(2, '0')}.${dateTime.month.toString().padLeft(2, '0')}.${dateTime.year} – ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
@@ -1187,7 +1265,7 @@ class _VaccinationPageState extends State<VaccinationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aşı (İzlem Dışında)'),
+        title: const Text('Aşı (İzlem Dışında)'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -1196,16 +1274,17 @@ class _VaccinationPageState extends State<VaccinationPage> {
           children: [
             // Hikayeler Bölümü
             _buildSection('Hikayeler', _stories, _storyController, _addStory),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Şikayetler Bölümü
-            _buildSection('Şikayetler', _complaints, _complaintController, _addComplaint),
-            SizedBox(height: 20),
+            _buildSection(
+                'Şikayetler', _complaints, _complaintController, _addComplaint),
+            const SizedBox(height: 20),
             // Aşılar Bölümü
-            Text(
+            const Text(
               'Aşılar',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Card(
               elevation: 3,
               child: Padding(
@@ -1214,32 +1293,48 @@ class _VaccinationPageState extends State<VaccinationPage> {
                   children: _vaccinations
                       .map(
                         (vaccination) => ListTile(
-                      title: Text(vaccination['content']!),
-                      trailing: Text(vaccination['timestamp']!),
-                    ),
-                  )
+                          title: Text(vaccination['content']!),
+                          trailing: Text(vaccination['timestamp']!),
+                        ),
+                      )
                       .toList(),
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Container(
-              width: double.infinity, // Container genişliğini ekranın tamamına yayar
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double
+                  .infinity, // Container genişliğini ekranın tamamına yayar
               child: DropdownButtonFormField<String>(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
                 isExpanded: true, // Dropdown genişliğini ekranın tamamına yayar
-                items: [
-                  DropdownMenuItem(child: Text('Bivalan OPA (Oral Polio Aşısı)'), value: 'Bivalan OPA (Oral Polio Aşısı)'),
-                  DropdownMenuItem(child: Text('Trivalan OPA (Oral Polio Aşısı)'), value: 'Trivalan OPA (Oral Polio Aşısı)'),
-                  DropdownMenuItem(child: Text('KKK (Kızamık, Kızamıkçık, Kabakulak Aşısı)'), value: 'KKK (Kızamık, Kızamıkçık, Kabakulak Aşısı)'),
-                  DropdownMenuItem(child: Text('Hepatit B Aşısı'), value: 'Hepatit B Aşısı'),
-                  DropdownMenuItem(child: Text('BCG (Verem Aşısı)'), value: 'BCG (Verem Aşısı)'),
-                  DropdownMenuItem(child: Text('Suçiçeği Aşısı'), value: 'Suçiçeği Aşısı'),
-                  DropdownMenuItem(child: Text('Pnömokok Aşısı'), value: 'Pnömokok Aşısı'),
-                  DropdownMenuItem(child: Text('Rotavirüs Aşısı'), value: 'Rotavirüs Aşısı'),
-                  DropdownMenuItem(child: Text('Difteri, Tetanoz, Boğmaca Aşısı'), value: 'Difteri, Tetanoz, Boğmaca Aşısı'),
+                items: const [
+                  DropdownMenuItem(
+                      value: 'Bivalan OPA (Oral Polio Aşısı)',
+                      child: Text('Bivalan OPA (Oral Polio Aşısı)')),
+                  DropdownMenuItem(
+                      value: 'Trivalan OPA (Oral Polio Aşısı)',
+                      child: Text('Trivalan OPA (Oral Polio Aşısı)')),
+                  DropdownMenuItem(
+                      value: 'KKK (Kızamık, Kızamıkçık, Kabakulak Aşısı)',
+                      child:
+                          Text('KKK (Kızamık, Kızamıkçık, Kabakulak Aşısı)')),
+                  DropdownMenuItem(
+                      value: 'Hepatit B Aşısı', child: Text('Hepatit B Aşısı')),
+                  DropdownMenuItem(
+                      value: 'BCG (Verem Aşısı)',
+                      child: Text('BCG (Verem Aşısı)')),
+                  DropdownMenuItem(
+                      value: 'Suçiçeği Aşısı', child: Text('Suçiçeği Aşısı')),
+                  DropdownMenuItem(
+                      value: 'Pnömokok Aşısı', child: Text('Pnömokok Aşısı')),
+                  DropdownMenuItem(
+                      value: 'Rotavirüs Aşısı', child: Text('Rotavirüs Aşısı')),
+                  DropdownMenuItem(
+                      value: 'Difteri, Tetanoz, Boğmaca Aşısı',
+                      child: Text('Difteri, Tetanoz, Boğmaca Aşısı')),
                   // Diğer aşıları buraya ekleyebilirsiniz...
                 ],
                 onChanged: (value) {
@@ -1255,15 +1350,16 @@ class _VaccinationPageState extends State<VaccinationPage> {
     );
   }
 
-  Widget _buildSection(String title, List<Map<String, String>> items, TextEditingController controller, VoidCallback onAdd) {
+  Widget _buildSection(String title, List<Map<String, String>> items,
+      TextEditingController controller, VoidCallback onAdd) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Card(
           elevation: 3,
           child: Padding(
@@ -1272,24 +1368,24 @@ class _VaccinationPageState extends State<VaccinationPage> {
               children: items
                   .map(
                     (item) => ListTile(
-                  title: Text(item['content']!),
-                  trailing: Text(item['timestamp']!),
-                ),
-              )
+                      title: Text(item['content']!),
+                      trailing: Text(item['timestamp']!),
+                    ),
+                  )
                   .toList(),
             ),
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           controller: controller,
           maxLines: 1,
           decoration: InputDecoration(
             hintText: 'Yeni $title ekleyin',
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: onAdd,
           child: Text('$title Ekle'),
@@ -1300,144 +1396,807 @@ class _VaccinationPageState extends State<VaccinationPage> {
 }
 
 class CalendarPage extends StatelessWidget {
+  const CalendarPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ajanda'),
+        title: const Text('Ajanda'),
       ),
-      body: Center(child: Text('Ajanda Page')),
+      body: const Center(child: Text('Ajanda Page')),
     );
   }
 }
 
 class ManagementPage extends StatelessWidget {
+  const ManagementPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yönetim'),
+        title: const Text('Yönetim'),
       ),
-      body: Center(child: Text('Yönetim Page')),
+      body: const Center(child: Text('Yönetim Page')),
     );
   }
 }
 
 class ResourceManagementPage extends StatelessWidget {
+  const ResourceManagementPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kaynak Yönetimi'),
+        title: const Text('Kaynak Yönetimi'),
       ),
-      body: Center(child: Text('Kaynak Yönetimi Page')),
+      body: const Center(child: Text('Kaynak Yönetimi Page')),
     );
   }
 }
 
 class DecisionSupportPage extends StatelessWidget {
+  const DecisionSupportPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Karar Destek'),
+        title: const Text('Karar Destek'),
       ),
-      body: Center(child: Text('Karar Destek Page')),
+      body: const Center(child: Text('Karar Destek Page')),
     );
   }
 }
 
 class SMSNotificationPage extends StatelessWidget {
+  const SMSNotificationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SMS Bildirim'),
+        title: const Text('Otomatik Bildirimler'),
       ),
-      body: Center(child: Text('SMS Bildirim Page')),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 1, // TextField'ların genişliğini ayarlayın
+            child: Container(
+              //height: 300,
+              child: Card(
+                color: const Color.fromARGB(255, 205, 220, 228),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Kullanıcı Adı',
+                        ),
+                      ),
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Kullanıcı Şifresi',
+                        ),
+                      ),
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Admin Telefonu',
+                        ),
+                      ),
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Mesaj Başlığı',
+                        ),
+                      ),
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'SMS Sağlayıcı',
+                        ),
+                      ),
+                      const SizedBox(
+                          height:
+                              50), // Butonlar ile TextField'lar arasında boşluk
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              // Gönderme işlemi
+                            },
+                            child: const Text('Kaydet'),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Temizleme işlemi
+                            },
+                            child: const Text('Kapat'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
-class IndividualOperationsPage extends StatelessWidget {
+
+class SMSSendingPage extends StatelessWidget {
+  const SMSSendingPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Birey İşlemleri'),
+        title: const Text('SMS Gönder'),
       ),
-      body: Center(child: Text('Birey İşlemleri Page')),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Row(
+              children: [
+                //En sol sütun
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      Card(
+                        color: Color.fromRGBO(184, 183, 183, 1),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Bireye Göre Ara',
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Ad-Soyad"),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Kimlik No"),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Telefon"),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Tümü"),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        color: Color.fromRGBO(184, 183, 183, 1),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Cinsiyete Göre Ara',
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Tümü"),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Erkek"),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Kadın"),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        color: Color.fromRGBO(184, 183, 183, 1),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Yaşa Göre Ara',
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Tümü"),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("0-1 Yaş"),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("1-5 Yaş"),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("5-15 Yaş"),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("15-49 Yaş"),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("+65 Yaş"),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                //Orta sütun
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white70,
+                      border: Border.all(
+                        color: Colors.black, // Çerçeve rengi
+                        width: 0.5, // Çerçeve kalınlığı
+                      ),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: ListView(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          color: Colors.indigoAccent,
+                          child: Text(
+                            "Arama Sonuçları",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                //En sağdaki sütun
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white70,
+                      border: Border.all(
+                        color: Colors.black, // Çerçeve rengi
+                        width: 0.5, // Çerçeve kalınlığı
+                      ),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: ListView(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          color: Colors.indigoAccent,
+                          child: Text(
+                            "SMS Gönderilecekler",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          //En alt satır
+          Container(
+            padding: EdgeInsets.all(16),
+            color: const Color.fromARGB(255, 170, 171, 172),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: TextField(
+                    maxLength: 500,
+                    minLines: 5,
+                    maxLines: 20,
+                    decoration: InputDecoration(
+                        hintText:
+                            "Mesaj Sadece Telefon Numarası Kayıtlı Hastalara Gönderilecektir !",
+                        labelText: "Mesaj Metni",
+                        border: OutlineInputBorder()),
+                  ),
+                ),
+                SizedBox(width: 20),
+                ElevatedButton(
+                    onPressed: () {
+                      print("Mesaj Gönderildi.");
+                    },
+                    child: Text('Mesaj Gönder'))
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MergeInpatientCardPage extends StatelessWidget {
+  const MergeInpatientCardPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Hasta Kartı Birleştirme'),
+      ),
+      body: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Card(
+                    child: Text(
+                      'Orjinal Hasta',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                    ),
+                    color: Colors.indigoAccent,
+                    margin: EdgeInsets.zero,
+                    shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueAccent),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: "Birey Ara",
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon:
+                            Icon(Icons.check_circle, color: Colors.blueAccent),
+                        onPressed: () {
+                          // Onay butonunun işlevi
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Hasta Dosya No : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Kimlik No : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Hasta Adı : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Hasta Soyadı : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Anne Adı : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Doğum Tarihi : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          VerticalDivider(
+            color: Colors.indigo,
+            thickness: 3, // Çizgi kalınlığı
+            width: 0,
+          ),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Card(
+                    child: Text(
+                      'Birleştirilecek Hasta',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                    ),
+                    color: Colors.indigoAccent,
+                    margin: EdgeInsets.zero,
+                    shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueAccent),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: "Birey Ara",
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon:
+                            Icon(Icons.check_circle, color: Colors.blueAccent),
+                        onPressed: () {
+                          // Onay butonunun işlevi
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Hasta Dosya No : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Kimlik No : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Hasta Adı : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Hasta Soyadı : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Anne Adı : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent),
+                      borderRadius: BorderRadius.circular(5.0)),
+                  child: Row(
+                    children: [
+                      Text('Doğum Tarihi : '),
+                      Expanded(
+                        child: TextField(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ayarlar'),
+        title: const Text('Ayarlar'),
       ),
-      body: Center(child: Text('Ayarlar Page')),
+      body: const Center(child: Text('Ayarlar Page')),
     );
   }
 }
 
 class InspectionProcessesPage extends StatelessWidget {
+  const InspectionProcessesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TETKİK İşlemleri'),
+        title: const Text('TETKİK İşlemleri'),
       ),
-      body: Center(child: Text('TETKİK İşlemleri Page')),
+      body: const Center(child: Text('TETKİK İşlemleri Page')),
     );
   }
 }
 
 class DataTransferPage extends StatelessWidget {
+  const DataTransferPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Veri Aktarımı'),
+        title: const Text('Veri Aktarımı'),
       ),
-      body: Center(child: Text('Veri Aktarımı Page')),
+      body: const Center(child: Text('Veri Aktarımı Page')),
     );
   }
 }
 
 class IslemlerPage extends StatelessWidget {
+  const IslemlerPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('İşlemler Sayfası'),
+        title: const Text('İşlemler Sayfası'),
       ),
-      body: Center(child: Text('İşlemler Sayfası')),
+      body: const Center(child: Text('İşlemler Sayfası')),
     );
   }
 }
 
 class USSDecisionSupportPage extends StatelessWidget {
+  const USSDecisionSupportPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('USS Karar Destek'),
+        title: const Text('USS Karar Destek'),
       ),
-      body: Center(child: Text('USS Karar Destek Page')),
+      body: const Center(child: Text('USS Karar Destek Page')),
     );
   }
 }
 
 class EndExaminationPage extends StatelessWidget {
+  const EndExaminationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Muayene Bitir'),
+        title: const Text('Muayene Bitir'),
       ),
-      body: Center(child: Text('Muayene Bitir Page')),
+      body: const Center(child: Text('Muayene Bitir Page')),
     );
   }
 }
