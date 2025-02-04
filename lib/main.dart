@@ -396,17 +396,48 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.folder),
+            ExpansionTile(
+              leading: const Icon(Icons.auto_graph_sharp),
               title: const Text('Kaynak Yönetimi'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ResourceManagementPage(),
-                  ),
-                );
-              },
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.contacts_rounded),
+                  title: const Text('Personel Kartları'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DoktorBilgiKayitFormu(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.calendar_month_outlined),
+                  title: const Text('Hekim Çalışma Planı'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.content_paste_go_sharp),
+                  title: const Text('Stok Mevcutları'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.add_to_photos_rounded),
+                  title: const Text('Aşı/Serum/İlaç Girişi'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.motion_photos_off_outlined),
+                  title: const Text('Fire-Zayi Çıkışı'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.wrap_text_outlined),
+                  title: const Text('Devir Girişi'),
+                  onTap: () {},
+                ),
+              ],
             ),
             ListTile(
               leading: const Icon(Icons.lightbulb),

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -1437,6 +1439,495 @@ class ResourceManagementPage extends StatelessWidget {
   }
 }
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Doktor Bilgi Kayıt',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: DoktorBilgiKayitFormu(),
+    );
+  }
+}
+
+class DoktorBilgiKayitFormu extends StatefulWidget {
+  @override
+  _DoktorBilgiKayitFormuState createState() => _DoktorBilgiKayitFormuState();
+}
+
+class _DoktorBilgiKayitFormuState extends State<DoktorBilgiKayitFormu> {
+  final _formKey = GlobalKey<FormState>();
+  final _formKey2 = GlobalKey<FormState>();
+
+  String unvan = '';
+  String adi = '';
+  String soyadi = '';
+  String tcKimlikNo = '';
+  String dogumTarihi = '';
+  String ahBirimNo = '';
+  String cinsiyet = '';
+  String kanGrubu = '';
+  String mesaiSaatleri = '';
+  String oglenSaatleri = '';
+  String ckysKodu = '';
+  String asmBilgi = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Doktor Bilgi Kayıt Formu'),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Card(
+                    color: const Color.fromARGB(255, 205, 220, 228),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text('Ünvanı',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Ünvanı giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  unvan = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('Adı',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Adı giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  adi = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('Soyadı',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Soyadı giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  soyadi = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('TC Kimlik No',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'TC Kimlik No giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  tcKimlikNo = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 30),
+                            /*Text('Doğum Tarihi',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Doğum Tarihi giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                dogumTarihi = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 16),
+                          Text('A.H. Birim No',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'A.H. Birim No giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                ahBirimNo = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 16),
+                          Text('Cinsiyet',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Cinsiyet giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                cinsiyet = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 16),
+                          Text('Kan Grubu',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Kan Grubu giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                kanGrubu = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 16),
+                          Text('Mesai Saatleri',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Mesai Saatleri giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                mesaiSaatleri = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 16),
+                          Text('Öğlen Saatleri',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Öğlen Saatleri giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                oglenSaatleri = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 16),
+                          Text('ÇKYS Kodu',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'ÇKYS Kodu giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                ckysKodu = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 16),
+                          Text('ASM Bilgi',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'ASM Bilgi giriniz',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                asmBilgi = value;
+                              });
+                            },
+                          ),
+                          SizedBox(height: 24),
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  // Form verilerini işleme koy
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text('Bilgiler Kaydediliyor...')),
+                                  );
+                                }
+                              },
+                              child:
+                                  Text('Kaydet', style: TextStyle(fontSize: 18)),
+                            ),
+                          ),*/
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Card(
+                      color: const Color.fromARGB(255, 205, 220, 228),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Column(
+                          children: [
+                            Text('Fotoğraf',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 8),
+                            Container(
+                              width: 200,
+                              height: 300,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Icon(Icons.camera_alt,
+                                  size: 50, color: Colors.grey),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () {},
+                                    child: Icon(Icons.camera_alt_outlined)),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                ElevatedButton(
+                                    onPressed: () {},
+                                    child: Icon(Icons.cases_outlined)),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Card(
+                    color: const Color.fromARGB(255, 205, 220, 228),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Form(
+                        key: _formKey2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text('Doğum Tarihi',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Doğum Tarihi giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  dogumTarihi = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('A.H. Birim No',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'A.H. Birim No giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  ahBirimNo = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('Cinsiyet',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Cinsiyet giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  cinsiyet = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('Kan Grubu',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Kan Grubu giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  kanGrubu = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('Mesai Saatleri',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Mesai Saatleri giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  mesaiSaatleri = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('Öğlen Saatleri',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Öğlen Saatleri giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  oglenSaatleri = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('ÇKYS Kodu',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'ÇKYS Kodu giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  ckysKodu = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 16),
+                            Text('ASM Bilgi',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'ASM Bilgi giriniz',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  asmBilgi = value;
+                                });
+                              },
+                            ),
+                            SizedBox(height: 24),
+                            Center(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey2.currentState!.validate()) {
+                                    // Form verilerini işleme koy
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content:
+                                              Text('Bilgiler Kaydediliyor...')),
+                                    );
+                                  }
+                                },
+                                child: Text('Kaydet',
+                                    style: TextStyle(fontSize: 18)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class DecisionSupportPage extends StatelessWidget {
   const DecisionSupportPage({super.key});
 
@@ -1461,12 +1952,12 @@ class SMSNotificationPage extends StatelessWidget {
         title: const Text('Otomatik Bildirimler'),
       ),
       body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            flex: 1, // TextField'ların genişliğini ayarlayın
+            flex: 1,
             child: Container(
-              //height: 300,
+              height: 370,
               child: Card(
                 color: const Color.fromARGB(255, 205, 220, 228),
                 shape: RoundedRectangleBorder(
@@ -1554,163 +2045,179 @@ class SMSSendingPage extends StatelessWidget {
                   flex: 2,
                   child: Column(
                     children: [
-                      Card(
-                        color: Color.fromRGBO(184, 183, 183, 1),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Bireye Göre Ara',
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Ad-Soyad"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Kimlik No"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Telefon"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Tümü"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                      SizedBox(
+                        height: 190,
+                        child: Card(
+                          color: Color.fromARGB(255, 205, 220, 228),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                'Bireye Göre Ara',
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Ad-Soyad"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Kimlik No"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Telefon"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Tümü"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Card(
-                        color: Color.fromRGBO(184, 183, 183, 1),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Cinsiyete Göre Ara',
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Tümü"),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Erkek"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Kadın"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                      SizedBox(
+                        height: 190,
+                        child: Card(
+                          color: Color.fromARGB(255, 205, 220, 228),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                'Cinsiyete Göre Ara',
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Tümü"),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Erkek"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Kadın"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Card(
-                        color: Color.fromRGBO(184, 183, 183, 1),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Yaşa Göre Ara',
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("Tümü"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("0-1 Yaş"),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("1-5 Yaş"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("5-15 Yaş"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("15-49 Yaş"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text("+65 Yaş"),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                      SizedBox(
+                        height: 285,
+                        child: Card(
+                          color: Color.fromARGB(255, 205, 220, 228),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                'Yaşa Göre Ara',
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(
+                                height: 50,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("Tümü"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("0-1 Yaş"),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("1-5 Yaş"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("5-15 Yaş"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("15-49 Yaş"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Text("+65 Yaş"),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -1782,9 +2289,13 @@ class SMSSendingPage extends StatelessWidget {
             ),
           ),
           //En alt satır
+          SizedBox(
+            height: 10,
+          ),
           Container(
-            padding: EdgeInsets.all(16),
-            color: const Color.fromARGB(255, 170, 171, 172),
+            width: 830,
+            padding: const EdgeInsets.all(16),
+            color: const Color.fromARGB(255, 205, 220, 228),
             child: Row(
               children: [
                 Expanded(
@@ -1809,14 +2320,26 @@ class SMSSendingPage extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: 10,
+          )
         ],
       ),
     );
   }
 }
 
-class MergeInpatientCardPage extends StatelessWidget {
-  const MergeInpatientCardPage({super.key});
+class MergeInpatientCardPage extends StatefulWidget {
+  @override
+  _MergeInpatientCardPage createState() => _MergeInpatientCardPage();
+}
+
+class _MergeInpatientCardPage extends State<MergeInpatientCardPage> {
+  //const _MergeInpatientCardPage({super.key});
+  Map<String, String> birlestilenHastalar = {};
+  String anneKimlikNo = "----";
+  String cocukKimlikNo = "----";
+  String metin = "....";
 
   @override
   Widget build(BuildContext context) {
@@ -1824,292 +2347,351 @@ class MergeInpatientCardPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Hasta Kartı Birleştirme'),
       ),
-      body: Row(
+      body: Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Card(
-                    child: Text(
-                      'Orjinal Hasta',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                      ),
-                    ),
-                    color: Colors.indigoAccent,
-                    margin: EdgeInsets.zero,
-                    shape:
-                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent),
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "Birey Ara",
-                            border: InputBorder.none,
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        child: Text(
+                          'Orjinal Hasta',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
                           ),
                         ),
-                      ),
-                      IconButton(
-                        icon:
-                            Icon(Icons.check_circle, color: Colors.blueAccent),
-                        onPressed: () {
-                          // Onay butonunun işlevi
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Hasta Dosya No : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Kimlik No : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Hasta Adı : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Hasta Soyadı : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Anne Adı : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Doğum Tarihi : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          VerticalDivider(
-            color: Colors.indigo,
-            thickness: 3, // Çizgi kalınlığı
-            width: 0,
-          ),
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Card(
-                    child: Text(
-                      'Birleştirilecek Hasta',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
+                        color: Colors.indigoAccent,
+                        margin: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero),
                       ),
                     ),
-                    color: Colors.indigoAccent,
-                    margin: EdgeInsets.zero,
-                    shape:
-                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                  ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blueAccent),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: "Birey Ara",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.check_circle,
+                                color: Colors.blueAccent),
+                            onPressed: () {
+                              // Onay butonunun işlevi
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Hasta Dosya No : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Kimlik No : '),
+                          Expanded(
+                            child: TextField(
+                              onChanged: (value) {
+                                anneKimlikNo = value;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Hasta Adı : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Hasta Soyadı : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Anne Adı : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Doğum Tarihi : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent),
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "Birey Ara",
-                            border: InputBorder.none,
+              ),
+              VerticalDivider(
+                color: Colors.indigo,
+                thickness: 3, // Çizgi kalınlığı
+                width: 0,
+              ),
+              Expanded(
+                flex: 2,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        child: Text(
+                          'Birleştirilecek Hasta',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
                           ),
                         ),
+                        color: Colors.indigoAccent,
+                        margin: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero),
                       ),
-                      IconButton(
-                        icon:
-                            Icon(Icons.check_circle, color: Colors.blueAccent),
-                        onPressed: () {
-                          // Onay butonunun işlevi
-                        },
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blueAccent),
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
-                    ],
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: "Birey Ara",
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.check_circle,
+                                color: Colors.blueAccent),
+                            onPressed: () {
+                              // Onay butonunun işlevi
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Hasta Dosya No : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Kimlik No : '),
+                          Expanded(
+                            child: TextField(
+                              onChanged: (value) {
+                                cocukKimlikNo = value;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Hasta Adı : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Hasta Soyadı : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Anne Adı : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blueAccent),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Row(
+                        children: [
+                          Text('Doğum Tarihi : '),
+                          Expanded(
+                            child: TextField(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              Card(
+                color: Colors.blueAccent,
+                child: TextButton.icon(
+                  onPressed: () {
+                    birlestilenHastalar[anneKimlikNo] = cocukKimlikNo;
+                    setState(() {
+                      metin = anneKimlikNo +
+                          " kimlik nolu hasta ile " +
+                          cocukKimlikNo +
+                          " kimlik nolu hasta birleştirildi. ";
+                      birlestilenHastalar.forEach((anahtar, deger) {
+                        print("$anahtar : $deger");
+                      });
+                      print("-----------");
+                    });
+                  },
+                  icon: Icon(
+                    Icons.add,
+                    size: 24,
+                    color: Colors.white,
+                  ), // İkon
+                  label: Text("Birleştir",
+                      style: TextStyle(
+                          fontSize: 20, color: Colors.white)), // Buton metni
+                ),
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Card(
+                elevation: 4,
+                margin: EdgeInsets.all(8),
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Text(
+                    metin,
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Hasta Dosya No : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Kimlik No : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Hasta Adı : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Hasta Soyadı : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Anne Adı : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(16.0),
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: Row(
-                    children: [
-                      Text('Doğum Tarihi : '),
-                      Expanded(
-                        child: TextField(),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
