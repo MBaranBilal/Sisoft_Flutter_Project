@@ -415,7 +415,14 @@ class _HomePageState extends State<HomePage> {
                 ListTile(
                   leading: const Icon(Icons.calendar_month_outlined),
                   title: const Text('Hekim Çalışma Planı'),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HekimCalismaPlaniPage(),
+                      ),
+                    );
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.content_paste_go_sharp),

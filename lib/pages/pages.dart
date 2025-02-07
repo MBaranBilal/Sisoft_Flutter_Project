@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class IndividualPage extends StatefulWidget {
   const IndividualPage({super.key});
@@ -1564,142 +1565,6 @@ class _DoktorBilgiKayitFormuState extends State<DoktorBilgiKayitFormu> {
                               },
                             ),
                             SizedBox(height: 30),
-                            /*Text('Doğum Tarihi',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Doğum Tarihi giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                dogumTarihi = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          Text('A.H. Birim No',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'A.H. Birim No giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                ahBirimNo = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          Text('Cinsiyet',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Cinsiyet giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                cinsiyet = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          Text('Kan Grubu',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Kan Grubu giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                kanGrubu = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          Text('Mesai Saatleri',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Mesai Saatleri giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                mesaiSaatleri = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          Text('Öğlen Saatleri',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'Öğlen Saatleri giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                oglenSaatleri = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          Text('ÇKYS Kodu',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'ÇKYS Kodu giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                ckysKodu = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          Text('ASM Bilgi',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: 'ASM Bilgi giriniz',
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                asmBilgi = value;
-                              });
-                            },
-                          ),
-                          SizedBox(height: 24),
-                          Center(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  // Form verilerini işleme koy
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content:
-                                            Text('Bilgiler Kaydediliyor...')),
-                                  );
-                                }
-                              },
-                              child:
-                                  Text('Kaydet', style: TextStyle(fontSize: 18)),
-                            ),
-                          ),*/
                           ],
                         ),
                       ),
@@ -1897,22 +1762,6 @@ class _DoktorBilgiKayitFormuState extends State<DoktorBilgiKayitFormu> {
                               },
                             ),
                             SizedBox(height: 24),
-                            Center(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  if (_formKey2.currentState!.validate()) {
-                                    // Form verilerini işleme koy
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content:
-                                              Text('Bilgiler Kaydediliyor...')),
-                                    );
-                                  }
-                                },
-                                child: Text('Kaydet',
-                                    style: TextStyle(fontSize: 18)),
-                              ),
-                            ),
                           ],
                         ),
                       ),
@@ -1921,12 +1770,729 @@ class _DoktorBilgiKayitFormuState extends State<DoktorBilgiKayitFormu> {
                 ),
               ],
             ),
+            Row(
+              children: [DoktorSekmeliForm()],
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+class DoktorSekmeliForm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 4,
+      child: Expanded(
+        child: Column(
+          children: [
+            TabBar(
+              tabs: [
+                Tab(text: 'Hekim Bilgileri'),
+                Tab(text: 'Sözleşme Bilgileri'),
+                Tab(text: 'Öğrenim Bilgileri'),
+                Tab(text: 'Kullanıcı Bilgileri'),
+              ],
+              labelColor: Colors.blue,
+            ),
+            Container(
+              height: 505, // Sekme içeriği için sabit bir yükseklik
+              child: TabBarView(
+                children: [
+                  Center(child: HekimBilgileriSekmesi()),
+                  Center(child: SozlesmeBilgileriSekmesi()),
+                  Center(child: OgrenimBilgileriSekmesi()),
+                  Center(child: KullaniciBilgileriSekmesi()),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: Row(children: [
+                        Icon(
+                          Icons.find_in_page_sharp,
+                        ),
+                        Text('İzinler')
+                      ])),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: Row(children: [
+                        Icon(
+                          Icons.add,
+                        ),
+                        Text('Ekle')
+                      ])),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: Row(children: [
+                        Icon(
+                          Icons.check,
+                        ),
+                        Text('Kaydet')
+                      ])),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HekimBilgileriSekmesi extends StatefulWidget {
+  @override
+  _HekimBilgileriSekmesi createState() => _HekimBilgileriSekmesi();
+}
+
+class _HekimBilgileriSekmesi extends State<HekimBilgileriSekmesi> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    String evAdresi = ' ';
+    String evTelefonu = ' ';
+    String evTelefonu2 = ' ';
+    String GSM = ' ';
+    String GPS = ' ';
+    String webAdresi = ' ';
+    String eMail = ' ';
+
+    return Scaffold(
+      body: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Card(
+                color: const Color.fromARGB(255, 205, 220, 228),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text('Ev Adresi',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Ev Adresi giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              evAdresi = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Ev Telefonu',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Ev Telefonu giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              evTelefonu = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Ev Telefonu 2',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Ev Telefonu 2 giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              evTelefonu2 = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('GSM',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'GSM giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              GSM = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('GPS',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'GPS giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              GPS = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 30),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SozlesmeBilgileriSekmesi extends StatefulWidget {
+  @override
+  _SozlesmeBilgileriSekmesi createState() => _SozlesmeBilgileriSekmesi();
+}
+
+class _SozlesmeBilgileriSekmesi extends State<SozlesmeBilgileriSekmesi> {
+  final _formKey = GlobalKey<FormState>();
+
+  String baslangicTarihi = ' ';
+  String bitisTarihi = ' ';
+  String brutUcret = ' ';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Card(
+                color: const Color.fromARGB(255, 205, 220, 228),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text('Başlangıç Tarihi',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Başlangıç Tarihi giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              baslangicTarihi = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Bitiş Tarihi',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Bitiş Tarihi giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              bitisTarihi = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Brüt Ücret',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Brüt Ücret giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              brutUcret = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Container(
+                          width: 180,
+                          child: ElevatedButton(
+                              onPressed: () {},
+                              child: Row(children: [
+                                Icon(
+                                  Icons.pending_actions_outlined,
+                                ),
+                                Text('Sözleşme Metni')
+                              ])),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class OgrenimBilgileriSekmesi extends StatefulWidget {
+  @override
+  _OgrenimBilgileriSekmesi createState() => _OgrenimBilgileriSekmesi();
+}
+
+class _OgrenimBilgileriSekmesi extends State<OgrenimBilgileriSekmesi> {
+  final _formKey = GlobalKey<FormState>();
+
+  String dipTescilNo = ' ';
+  String mezOldTarih = ' ';
+  String mezOldOkul = ' ';
+  String sertifikaNo = ' ';
+  String ihtisasNo = ' ';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Card(
+                color: const Color.fromARGB(255, 205, 220, 228),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text('Diploma Tescil No',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Diploma Tescil No giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              dipTescilNo = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Mezun Olduğu Okul',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Mezun Olduğu Okulu giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              mezOldOkul = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Mezun Olduğu Tarih',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Mezun Olduğu Tarihi giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              mezOldTarih = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Sertifika No',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Sertifika No giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              sertifikaNo = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('İhtisas No',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'İhtisas No giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              ihtisasNo = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class KullaniciBilgileriSekmesi extends StatefulWidget {
+  @override
+  _KullaniciBilgileriSekmesi createState() => _KullaniciBilgileriSekmesi();
+}
+
+class _KullaniciBilgileriSekmesi extends State<KullaniciBilgileriSekmesi> {
+  final _formKey = GlobalKey<FormState>();
+
+  String kullaniciAdi = ' ';
+  String kullaniciKodu = ' ';
+  String eskiSifre = ' ';
+  String yeniSifre = ' ';
+  String yeniSifreTekrar = ' ';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Card(
+                color: const Color.fromARGB(255, 205, 220, 228),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text('Kullanıcı Adı',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Kullanıcı Adı giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              kullaniciAdi = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Kullanıcı Kodu',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Kullanıcı Kodu giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              kullaniciKodu = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Eski Şifre',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Eski Şifreyi giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              eskiSifre = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Yeni Şifre',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Yeni Şifreyi giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              yeniSifre = value;
+                            });
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        Text('Yeni Şifre Tekrar',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Yeni Şifreyi Tekrar giriniz',
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              yeniSifreTekrar = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HekimCalismaPlaniPage extends StatelessWidget {
+  const HekimCalismaPlaniPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 650,
+              child: Card(
+                color: const Color.fromARGB(255, 205, 220, 228),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: SfCalendar(
+                  view: CalendarView.week,
+                  firstDayOfWeek: 1, // Pazartesi başlangıç
+                  timeSlotViewSettings: TimeSlotViewSettings(
+                    startHour: 7, // Takvim başlangıç saati
+                    endHour: 20, // Takvim bitiş saati
+                    timeInterval: Duration(hours: 1),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 150,
+              child: Card(
+                color: const Color.fromARGB(255, 205, 220, 228),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      AksiyonTipiDropDownBox(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CetvelTipiDropDownBox(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AksiyonTipiDropDownBox extends StatefulWidget {
+  @override
+  _AksiyonTipiDropDownBox createState() => _AksiyonTipiDropDownBox();
+}
+
+class _AksiyonTipiDropDownBox extends State<AksiyonTipiDropDownBox> {
+  String? selectedValue;
+  List<String> items = [
+    'Check-Up',
+    'Dini Bayram',
+    'Doğum Öncesi/Doğum Sonrası',
+    'Eğitim veya Kongre',
+    'Evde Sağlık Hizmetleri',
+    'Evlilik İzni',
+    'Filyasyonda Görevli',
+    'Gezici Sağlık Hizmetleri',
+    'Hafta Sonu Tatili',
+    'İdari İzin',
+    'İş Yeri Hekimliği',
+    'Koruyucu Sağlık Hizmetleri',
+    'Mobil Sağlık Hizmetleri',
+    'Nöbet',
+    'Ölüm İzni',
+    'Raporlu',
+    'Refakat İzni',
+    'Saha Çalışması',
+    'SAHU Eğitim',
+    'SAHU Rotasyon',
+    'Süt İzni'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      hint: Text(
+        "Aksiyon Tipi",
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      ),
+      value: selectedValue,
+      isExpanded: true,
+      items: items.map((String item) {
+        return DropdownMenuItem<String>(
+          value: item,
+          child: Text(item),
+        );
+      }).toList(),
+      onChanged: (String? newValue) {
+        setState(() {
+          selectedValue = newValue;
+        });
+      },
+    );
+  }
+}
+
+class CetvelTipiDropDownBox extends StatefulWidget {
+  @override
+  _CetvelTipiDropDownBox createState() => _CetvelTipiDropDownBox();
+}
+
+class _CetvelTipiDropDownBox extends State<CetvelTipiDropDownBox> {
+  String? selectedValue;
+  List<String> items = [
+    'Taslak Cetveller',
+    'Gönderilmiş Cetveller',
+    'Kesinleştirilmiş Cetveller',
+    'İstisna Cetveller',
+    'Cetvel Güncelle'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      hint: Text(
+        "Cetvel Tipi",
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      ),
+      value: selectedValue,
+      isExpanded: true,
+      items: items.map((String item) {
+        return DropdownMenuItem<String>(
+          value: item,
+          child: Text(item),
+        );
+      }).toList(),
+      onChanged: (String? newValue) {
+        setState(() {
+          selectedValue = newValue;
+        });
+      },
+    );
+  }
+}
+
+//-------------------------------------------
 
 class DecisionSupportPage extends StatelessWidget {
   const DecisionSupportPage({super.key});
@@ -2150,7 +2716,7 @@ class SMSSendingPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 285,
+                        height: 250,
                         child: Card(
                           color: Color.fromARGB(255, 205, 220, 228),
                           child: Column(
