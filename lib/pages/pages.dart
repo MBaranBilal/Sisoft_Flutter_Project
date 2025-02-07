@@ -2347,6 +2347,9 @@ class HekimCalismaPlaniPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Hekim Çalışma Planı'),
+      ),
       body: Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -2360,10 +2363,10 @@ class HekimCalismaPlaniPage extends StatelessWidget {
                 ),
                 child: SfCalendar(
                   view: CalendarView.week,
-                  firstDayOfWeek: 1, // Pazartesi başlangıç
+                  firstDayOfWeek: 1,
                   timeSlotViewSettings: TimeSlotViewSettings(
-                    startHour: 7, // Takvim başlangıç saati
-                    endHour: 20, // Takvim bitiş saati
+                    startHour: 7,
+                    endHour: 20,
                     timeInterval: Duration(hours: 1),
                   ),
                 ),
